@@ -31,6 +31,7 @@ abstract class View {
 // | -kibitz   Map<String,Chat> |
 // +----------------------------+
 // | +createChat(String)   void |
+// | +joinChat(String)     void |
 // | +getName()          String |
 // +----------------------------+
 ////////////////////////////////////////////////////////////////
@@ -46,6 +47,12 @@ class User extends View {
     }
     void createChat( String chatName ){
         Chat chat = app.createChat( chatName, name );
+        chat.setOwner( this );
+        chatz.put( chatName, chat );
+        active = chat;
+    }
+    void joinChat( String chatName ){
+        Chat chat = app.joinChat( chatName, name );
         chat.setOwner( this );
         chatz.put( chatName, chat );
         active = chat;
@@ -104,6 +111,7 @@ class Chat extends View {
     @Override
     public void display() {
         int j = Math.max( 0, deck.size() - DISPLAY_LENGTH );
+        brush( "[ " + name + " ]" );
         while( j < deck.size()){
             deck.get( j++ ).display();
         }

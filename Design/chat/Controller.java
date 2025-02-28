@@ -70,11 +70,10 @@ class ChatController extends Controller <ChatTable> {
         if( table.find( chatName )){
             Log.error( "Chat " + chatName + " already there" );
             return null;
-        } else {
-            table.save( new ChatRecord( chatName ));
-            Log.info( "New Chat " + chatName );
-            brokerManager.createNewTopic( chatName );
         }
+        table.save( new ChatRecord( chatName ));
+        Log.info( "New Chat " + chatName );
+        brokerManager.createNewTopic( chatName );
         return subscribe( chatName, userName );
     }
     Chat joinChat( String chatName, String userName ){

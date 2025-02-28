@@ -1,0 +1,53 @@
+:root {
+    --body-bgr: hsl(  18, 20%, 20% );
+    --body-fgr: hsl( 202, 13%, 80% );
+}
+html {
+    height: 100%;
+}
+html, body, a, ul, li, nav {
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    height: 100%;
+    background-color: var( --body-bgr );
+    color: var( --body-fgr );
+}
+input, button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+a {
+    text-decoration: none;
+}
+/* ////////////////////////////////////////////////////////// */
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* ########################################################## */
+.con {
+    height: 100%;
+    background: hsl( 35, 40%, 25% );
+    display: grid;
+    grid-template-columns: repeat( 8, 1fr );
+    grid-template-rows: repeat( 8, 1fr );
+}
+/* ##########################################################   
+   ########[ messages con ]##################################   
+   ########################################################## */
+.messages-con {
+    width: 10rem;
+    height: 10rem;
+    background: hsl(5,10%,50%);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+/* ========================================================== */

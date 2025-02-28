@@ -30,6 +30,7 @@ class Log {
 // +---------------------------------------+
 // | +createUser(String)              User |
 // | +createChat(String,String)       Chat |
+// | +joinChat(String,String)         Chat |
 // | +sendMessage(String,String)      void |
 // | +main(String[])              [s] void |
 // +---------------------------------------+
@@ -58,6 +59,9 @@ public class ChatApp {
     Chat createChat( String chatName, String userName ){
         return chatController.createChat( chatName, userName );
     }
+    Chat joinChat( String chatName, String userName ){
+        return chatController.joinChat( chatName, userName );
+    }
     void sendMessage( String chatName, Message msg ){
         messageController.sendMessage( chatName, msg );
     }
@@ -67,8 +71,8 @@ public class ChatApp {
         Anton.createChat( "MyChat" );
         Anton.sendMessage( "Hello" );
         User Bobi = chatApp.createUser( "Bobi" );
-//      Bobi.joinChat( "MyChat" );
-//      Bobi.sendMessage( "Hi Anton!" );
+        Bobi.joinChat( "MyChat" );
+        Bobi.sendMessage( "Hi Anton!" );
     }
 }
 ////////////////////////////////////////////////////////////////
