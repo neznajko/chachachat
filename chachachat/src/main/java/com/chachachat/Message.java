@@ -3,7 +3,7 @@ package com.chachachat;
 ////////////////////////////////////////////////////////////////
 class Message {
     private String text;
-    Message( String text ){
+    public Message( String text ){
         this.text = text;
     }
     public String getText() {

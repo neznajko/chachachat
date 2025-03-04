@@ -7,7 +7,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 ////////////////////////////////////////////////////////////////////////
 @Controller
-class MessageController {
+public class MessageController {
     @MessageMapping( "/chat" )
     @SendTo(   "/topic/chat" )
     public Message echo( Message msg ){
