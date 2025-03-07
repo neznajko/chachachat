@@ -8,7 +8,7 @@ const client = new StompJs.Client({
 const messagesCon = document.querySelector( ".messages-con" );
 ////////////////////////////////////////////////////////////////
 client.onConnect = function( frame ){
-    client.subscribe( "/topic/chat", function( msg ){
+    client.subscribe( "/topic/chat/java", function( msg ){
         console.log( "> ", msg.body );
         const p = document.createElement( "p" );
         p.textContent = msg.body;
@@ -20,7 +20,7 @@ const inputText = document.getElementById( "example" );
 const sendButton = document.getElementById( "sendButton" );
 sendButton.addEventListener( "click", e => {
     client.publish({
-        destination: "/app/chat",
+        destination: "/app/chat/java",
         body: JSON.stringify({"text":inputText.value}),
     });
 });

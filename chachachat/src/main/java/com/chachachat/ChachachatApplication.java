@@ -10,24 +10,28 @@ import org.springframework.boot.CommandLineRunner;
 ////////////////////////////////////////////////////////////////
 @SpringBootApplication
 public class ChachachatApplication implements CommandLineRunner {
+    
     private static final Logger logger = LoggerFactory
         .getLogger( ChachachatApplication.class );
                                                                  
-    private final MessageRecordRepo messageRecordRepo;
+    private final MessageRepository mrepository;
+    private final ChatRepository crepository;
     
     public
-    ChachachatApplication( MessageRecordRepo messageRecordRepo ){
-        this.messageRecordRepo = messageRecordRepo;
+    ChachachatApplication( MessageRepository mrepository,
+                           ChatRepository crepository){
+        this.mrepository = mrepository;
+        this.crepository = crepository;
     }
 	public static void main( String[] args ){
 		SpringApplication.run( ChachachatApplication.class, args );
 	}
     @Override
     public void run( String ... args ) throws Exception {
-        messageRecordRepo
-            .save( new MessageRecord( "Hello World!" )); 
-        messageRecordRepo
-            .save( new MessageRecord( "Hi Anton!" )); 
+        Chat chat = new Chat( "java" );
+        crepository.save( chat );
+        mrepository.save( new Message( "Hello World!", chat )); 
+        mrepository.save( new Message( "Hi Anton!", chat )); 
     }
 }
 ////////////////////////////////////////////////////////////////

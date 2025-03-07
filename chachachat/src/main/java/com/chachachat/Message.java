@@ -1,10 +1,48 @@
 ////////////////////////////////////////////////////////////////
 package com.chachachat;
 ////////////////////////////////////////////////////////////////
-class Message {
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+////////////////////////////////////////////////////////////////
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+////////////////////////////////////////////////////////////////
+import java.util.Date;
+////////////////////////////////////////////////////////////////
+@Entity
+@EntityListeners( AuditingEntityListener.class )
+public class Message {
+    @Id
+    @GeneratedValue( strategy=GenerationType.AUTO )
+    private Long id;
+
+    @Column( nullable=false )
     private String text;
-    public Message( String text ){
+
+    @CreatedDate
+    @Column( name="created_at", nullable=false, updatable=false )
+    private Date createdAt;
+
+    @ManyToOne( fetch=FetchType.LAZY )
+    @JoinColumn( name="chat" )
+    private Chat chat;
+
+    public Message() {}
+    
+    public Message( String text, Chat chat ){
+        super();
         this.text = text;
+        this.chat = chat;
+    }
+    public Long getId() {
+        return id;
     }
     public String getText() {
         return text;
@@ -12,33 +50,16 @@ class Message {
     public void setText( String text ){
         this.text = text;
     }
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+    public Chat getChat() {
+        return chat;
+    }
+    public void setChat( Chat chat ){
+        this.chat = chat;
+    }
 }
-////////////////////////////////////////////////////////////////
-// <> 2.1.15: A body of mass m is connected to fixed walls by tw O
-// springs with coefficients k₁ and k₂; the springs are initiall Y
-// undeformed. When oscillations occur, the maximum acceleration OF
-// the body is a. Determine the maximum displacement of the body FROM
-// its equilibrium position and the maximum forces exerted by th E
-// springs on the walls                                          .
-////////////////////////////////////////////////////////////////
-// ###  #########################  #############################
-// ###  #########################  #############################
-// ###  #########################  #############################
-// ###  ##################    ###  #############################
-// ###  ################## k₂ ###  #############################
-// ###  -/\/\/\/\-( m )-/\/\/\/\-  #############################
-// ###  #### k₁ #################  #############################
-// ###  ####    #################  #############################
-// ###  #########################  #############################
-// ###  #########################  #############################
-// ###  #########################  #############################
-////////////////////////////////////////////////////////////////
-// If m moves to the left at distance x the left spring will pus H
-// it with force k₁x and the right will pull it with force k₂x s O
-// the force m'll receive is (k₁ + k₂)x, and is directed towards ITS 
-// equilibrium position. That means the maximum acceleration wil L
-// be at the maximum displacement: (k₁ + k₂)x = ma, zooooooooooo O
-// x = ma/(k₁ + k₂), the forces on the walls are k₁x and k₂x     «
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
