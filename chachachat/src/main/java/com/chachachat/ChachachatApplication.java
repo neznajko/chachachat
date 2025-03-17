@@ -19,7 +19,7 @@ public class ChachachatApplication implements CommandLineRunner {
     
     public
     ChachachatApplication( MessageRepository mrepository,
-                           ChatRepository crepository){
+                           ChatRepository crepository ){
         this.mrepository = mrepository;
         this.crepository = crepository;
     }

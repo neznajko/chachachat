@@ -19,12 +19,19 @@ public class ChatController {
         this.crepository = crepository;
     }
     @PostMapping( "/{name}" )
-    public ResponseEntity <Chat> createChat( @PathVariable String name ){
+    public ResponseEntity <?> create( @PathVariable String name ){
+        
         if( crepository.findByName( name ).isPresent()) {
-            throw new RuntimeException( "That chat already exists" );
+            
+            return ResponseEntity
+                .status( HttpStatus.CONFLICT )
+                .body( "That chat already exists" );
         }
         Chat chat = crepository.save( new Chat( name ));
-        return ResponseEntity.status( HttpStatus.CREATED ).body( chat );
+        
+        return ResponseEntity
+            .status( HttpStatus.CREATED )
+            .body( chat );
     }
 }
 ////////////////////////////////////////////////////////////////

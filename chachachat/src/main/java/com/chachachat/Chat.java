@@ -59,5 +59,17 @@ public class Chat {
 // (b) Find the probability t%h%a%t at least one person will get
 //     chosen more than once.
 ////////////////////////////////////////////////////////////////
-// What is the birthday problem?
-//
+// (a) What is the birthday problem?
+// (b) n = 1000, N = 1,000,000
+// E - the event that at least one person is chosen more than 
+// once
+// !E - the event that people in the sample are unique,
+// P(E) = 1 - P(!E)
+// , cos we have sampling with replacement, the first person can
+// be chosen in N ways, the second again in N ways and so on, so
+// the total number of ways is N**n, for the number of samples,
+// where there are no repetitions, we can choose the fyorst
+// person in N ways, the second in N - 1, the nth in N - (n - 1)
+// ways, zooooooooooo P(!E) = N(N-1)...........(N-n+1)/N**n, and
+// P(E) = 1 - N(N-1)......(N-n+1)/N**n                         «
+////////////////////////////////////////////////////////////////

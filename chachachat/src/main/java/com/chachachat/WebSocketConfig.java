@@ -23,4 +23,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////
-
+// 28. A college has 10 time slots for its c--o--u-rses, and blithely assigns courses to
+// completely random time slots, independently. Th-e college offers exactly 3 statistics
+// courses. What is the probability that 2 or more o=f the statistics courses are in the
+// same time slot?
+////////////////////////////////////////////////////////////////////////////////////////
