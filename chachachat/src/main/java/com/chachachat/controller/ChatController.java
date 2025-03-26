@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////
-package com.chachachat;
+package com.chachachat.controller;
 ////////////////////////////////////////////////////////////////
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 ////////////////////////////////////////////////////////////////
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+////////////////////////////////////////////////////////////////
+import com.chachachat.model.Chat;
+import com.chachachat.repository.ChatRepository;
 ////////////////////////////////////////////////////////////////
 @RestController
 @RequestMapping( "api/chat" )

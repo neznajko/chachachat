@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////
-package com.chachachat;
+package com.chachachat.model;
 ////////////////////////////////////////////////////////////////
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -37,7 +37,6 @@ public class Message {
     public Message() {}
     
     public Message( String text, Chat chat ){
-        super();
         this.text = text;
         this.chat = chat;
     }

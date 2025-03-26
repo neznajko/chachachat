@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////
-package com.chachachat;
+package com.chachachat.model;
 ////////////////////////////////////////////////////////////////
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -26,7 +26,6 @@ public class Chat {
     public Chat() {}
     
     public Chat( String name ){
-        super();
         this.name = name;
     }
     public Long getId() {

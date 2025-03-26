@@ -2,7 +2,7 @@
 console.log( "scrip4ing .." );
 ////////////////////////////////////////////////////////////////
 const client = new StompJs.Client({
-    brokerURL: "ws://localhost:8080/websocket",
+    brokerURL: "ws://localhost:8083/websocket",
 });
 ////////////////////////////////////////////////////////////////
 const messagesCon = document.querySelector( ".messages-con" );
@@ -12,6 +12,7 @@ client.onConnect = function( frame ){
         console.log( "> ", msg.body );
         const p = document.createElement( "p" );
         p.textContent = msg.body;
+        // prepend
         messagesCon.appendChild( p );
     });
 }
@@ -19,6 +20,7 @@ client.onConnect = function( frame ){
 const inputText = document.getElementById( "example" );
 const sendButton = document.getElementById( "sendButton" );
 sendButton.addEventListener( "click", e => {
+    console.log( "clck: " + inputText.value );
     client.publish({
         destination: "/app/chat/java",
         body: JSON.stringify({"text":inputText.value}),

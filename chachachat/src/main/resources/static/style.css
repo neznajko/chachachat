@@ -49,5 +49,8 @@ a {
     background: hsl(5,10%,50%);
     overflow-y: auto;
     overflow-x: hidden;
+
+    display: flex;
+    flex-direction: column-reverse;
 }
 /* ========================================================== */

@@ -1,11 +1,17 @@
 ////////////////////////////////////////////////////////////////////////
-package com.chachachat;
+package com.chachachat.controller;
 ////////////////////////////////////////////////////////////////////////
 import org.springframework.stereotype.Controller;
 ////////////////////////////////////////////////////////////////////////
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
+////////////////////////////////////////////////////////////////////////
+import com.chachachat.model.StompMessage;
+import com.chachachat.model.Message;
+import com.chachachat.model.Chat;
+import com.chachachat.repository.ChatRepository;
+import com.chachachat.repository.MessageRepository;
 ////////////////////////////////////////////////////////////////////////
 @Controller
 public class StompMessageController {
