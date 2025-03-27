@@ -12,8 +12,7 @@ client.onConnect = function( frame ){
         console.log( "> ", msg.body );
         const p = document.createElement( "p" );
         p.textContent = msg.body;
-        // prepend
-        messagesCon.appendChild( p );
+        messagesCon.prepend( p );
     });
 }
 ////////////////////////////////////////////////////////////////
