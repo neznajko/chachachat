@@ -9,8 +9,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.CommandLineRunner;
 ////////////////////////////////////////////////////////////////
 import com.chachachat.model.Chat;
+import com.chachachat.model.User;
 import com.chachachat.model.Message;
 import com.chachachat.repository.ChatRepository;
+import com.chachachat.repository.UserRepository;
 import com.chachachat.repository.MessageRepository;
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
@@ -19,17 +21,20 @@ import com.chachachat.repository.MessageRepository;
 @SpringBootApplication
 public class ChachachatApplication implements CommandLineRunner {
     
-    private static final Logger logger = LoggerFactory
+    private static final Logger log = LoggerFactory
         .getLogger( ChachachatApplication.class );
           
     private final MessageRepository mrepository;
     private final ChatRepository crepository;
+    private final UserRepository urepository;
     
     public
     ChachachatApplication( MessageRepository mrepository,
-                           ChatRepository crepository ){
+                           ChatRepository crepository,
+                           UserRepository urepository ){
         this.mrepository = mrepository;
         this.crepository = crepository;
+        this.urepository = urepository;
     }
 	public static void main( String[] args ){
         
@@ -37,10 +42,13 @@ public class ChachachatApplication implements CommandLineRunner {
 	}
     @Override
     public void run( String ... args ) throws Exception {
+        log.info( "Boom" );
         Chat chat = new Chat( "java" );
         crepository.save( chat );
-        mrepository.save( new Message( "Hello World!", chat )); 
-        mrepository.save( new Message( "Hi Anton!", chat )); 
+        User user = new User( "Anton" );
+        urepository.save( user );
+        Message msg = new Message( "Booooom, haHaHa", chat, user );
+        mrepository.save( msg );
     }
 }
 ////////////////////////////////////////////////////////////////
@@ -64,44 +72,56 @@ public class ChachachatApplication implements CommandLineRunner {
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 // #############################################################
-// #### [ com.chachachat ]                  ####################
+// ---- [ com.chachachat ]                  ====================
 // #############################################################
-// ###### @SpringBootApplication            ####################
-// ###### ChachachatApplication             ####################
+// ------ @SpringBootApplication            ====================
+// ------ ChachachatApplication             ====================
 // #############################################################
-// ######## -logger:             Logger [s] ####################
-// ######## -mrepository: MessageRepository ####################
-// ######## -crepository:    ChatRepository ####################
+// -------- -log:                Logger [s] ====================
+// -------- -mrepository: MessageRepository ====================
+// -------- -crepository:    ChatRepository ====================
+// -------- -urepository:    UserRepository ====================
 // #############################################################
 ////////////////////////////////////////////////////////////////
 // #############################################################
 // #### [ com.chachachat.model ]      ##########################
 // #############################################################
-// ###### StompMessage                ##########################
+// ###### @Data
+// ###### @AllArgsConstructor
+// ###### StompMessage                
 // #############################################################
+// ######## -user: String             ##########################
 // ######## -text: String             ##########################
 // #############################################################
-// ###### @Entity                     ##########################
-// ###### @EntityListeners            ##########################
-// ###### Message                     ##########################
+// ###### @Entity           
+// ###### @EntityListeners  
+// ###### @Data
+// ###### @NoArgsconstructor
+// ###### Message           
 // #############################################################
 // ######## @Id                       ##########################
 // ######## @GeneratedValue           ##########################
 // ######## -id:                 Long ##########################
 // #############################################################
-// ######## @Column                   ##########################
-// ######## -text:             String ##########################
+// ######## @Column                   #########_________________
+// ######## -text:             String ########/_________________
+// ##########################################//                 
+// ######## @CreatedDate              ######//                  
+// ######## @Column                   #####//  _________________
+// ######## -createdAt:          Date ####//  /#################
+// ######################################//  /##################
+// ######## @ManyToOne                ##//  /###################
+// ######## @JoinColumn               #//  /####################
+// ######## -chat:               Chat //  /#####################
+// ###################################/  /######################
+// ######## @ManyToOne                  /#######################
+// ######## @JoinColumn                /########################
+// ######## -user:               User /#########################
 // #############################################################
-// ######## @CreatedDate              ##########################
-// ######## @Column                   ##########################
-// ######## -createdAt:          Date ##########################
-// #############################################################
-// ######## @ManyToOne                ##########################
-// ######## @JoinColumn               ##########################
-// ######## -chat:               Chat ##########################
-// #############################################################
-// ###### @Entity                     ##########################
-// ###### Chat                        ##########################
+// ###### @Entity           
+// ###### @Data
+// ###### @NoArgsconstructor
+// ###### Chat              
 // #############################################################
 // ######## @Id                       ##########################
 // ######## @GeneratedValue           ##########################
@@ -113,8 +133,10 @@ public class ChachachatApplication implements CommandLineRunner {
 // ######## @OneToMany                ##########################
 // ######## -messages: List <Message> ##########################
 // #############################################################
-// ###### @Entity                     ##########################
-// ###### User                        ##########################
+// ###### @Entity           
+// ###### @Data
+// ###### @NoArgsconstructor
+// ###### User              
 // #############################################################
 // ######## @Id                       ##########################
 // ######## @GeneratedValue           ##########################
@@ -145,6 +167,7 @@ public class ChachachatApplication implements CommandLineRunner {
 // #############################################################
 // ######## -mrepository: MessageRepository ####################
 // ######## -crepository:    ChatRepository ####################
+// ######## -urepository:    UserRepository ####################
 // #############################################################
 // ###### @RestController                   ####################
 // ###### @RequestMapping                   ####################

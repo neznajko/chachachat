@@ -1,32 +1,77 @@
 ////////////////////////////////////////////////////////////////
 console.log( "scrip4ing .." );
 ////////////////////////////////////////////////////////////////
+/////////////////////////////////// Base class for a DOM element
+class Dom {
+    constructor( selector ){
+        this.elem = document.querySelector( selector );
+    }
+    subscribe( event, callback ){
+        this.elem.addEventListener( event, callback );
+    }
+}
+//////////////////////////////////////////////////// Select User 
+class Select extends Dom {
+    subscribe( callback ){
+        super.subscribe( "change", callback );
+    }
+}
+/////////////////////////////////////////////////////////// Form
+class Form extends Dom {
+    subscribe( callback ){
+        super.subscribe( "submit", e => {
+            e.preventDefault();
+            callback( e );
+        });
+    }
+}
+////////////////////////////////////////////////////////// Input
+class Input extends Dom {
+    value() {
+        return this.elem.value;
+    }
+    clear() {
+        this.elem.value = "";
+    }
+}
+////////////////////////////////////////////////////////////////
+class Chat extends Dom {
+    insert( msg ){
+        const p = document.createElement( "p" );
+        p.textContent = msg;
+        this.elem.prepend( p );
+    }
+}
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 const client = new StompJs.Client({
     brokerURL: "ws://localhost:8083/websocket",
 });
+client.name = "";
+client.setName = function( name ){
+    this.name = name;
+    console.log( name );
+};
 ////////////////////////////////////////////////////////////////
-const messagesCon = document.querySelector( ".messages-con" );
-////////////////////////////////////////////////////////////////
-client.onConnect = function( frame ){
-    client.subscribe( "/topic/chat/java", function( msg ){
-        console.log( "> ", msg.body );
-        const p = document.createElement( "p" );
-        p.textContent = msg.body;
-        messagesCon.prepend( p );
-    });
-}
-////////////////////////////////////////////////////////////////
-const inputText = document.getElementById( "example" );
-const sendButton = document.getElementById( "sendButton" );
-sendButton.addEventListener( "click", e => {
-    console.log( "clck: " + inputText.value );
-    client.publish({
-        destination: "/app/chat/java",
-        body: JSON.stringify({"text":inputText.value}),
-    });
+const select = new Select( "#select-user" );
+select.subscribe( e => {
+    const name = e.target.value;
+    if( name ){
+        client.setName( name );
+    }
 });
-////////////////////////////////////////////////////////////////
-client.activate();
+const form = new Form( ".form-con > form" );
+const input = new Input( ".form-con > form > input" );
+const chat = new Chat( ".chat-con" );
+form.subscribe( e => {
+    const msg = input.value();
+    if( msg ){
+        chat.insert( client.name + ": " + msg );
+        input.clear();
+    }
+});
 ////////////////////////////////////////////////////////////////
 // 24. A certain family has 6 children, consisting of 3 boys and
 // 3 girls. Assuming  that  all birth orders are equally likely,

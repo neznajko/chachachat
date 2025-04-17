@@ -9,9 +9,14 @@ import jakarta.persistence.Column;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.CascadeType;
 ////////////////////////////////////////////////////////////////
+import lombok.Data;
+import lombok.NoArgsConstructor;
+////////////////////////////////////////////////////////////////
 import java.util.List;
 ////////////////////////////////////////////////////////////////
 @Entity
+@Data
+@NoArgsConstructor
 public class Chat {
     @Id
     @GeneratedValue( strategy=GenerationType.AUTO )
@@ -23,25 +28,8 @@ public class Chat {
     @OneToMany( cascade=CascadeType.ALL, mappedBy="chat" )
     private List <Message> messages;
 
-    public Chat() {}
-    
     public Chat( String name ){
         this.name = name;
-    }
-    public Long getId() {
-        return id;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName( String name ){
-        this.name = name;
-    }
-    public List <Message> getMessages() {
-        return messages;
-    }
-    public void setMessages( List <Message> messages ){
-        this.messages = messages;
     }
 }
 ////////////////////////////////////////////////////////////////

@@ -10,7 +10,9 @@ import org.springframework.messaging.handler.annotation.DestinationVariable;
 import com.chachachat.model.StompMessage;
 import com.chachachat.model.Message;
 import com.chachachat.model.Chat;
+import com.chachachat.model.User;
 import com.chachachat.repository.ChatRepository;
+import com.chachachat.repository.UserRepository;
 import com.chachachat.repository.MessageRepository;
 ////////////////////////////////////////////////////////////////////////
 @Controller
@@ -18,11 +20,14 @@ public class StompMessageController {
     
     private final MessageRepository mrepository;
     private final ChatRepository crepository;
+    private final UserRepository urepository;
     
     StompMessageController( MessageRepository mrepository,
-                            ChatRepository crepository ){
+                            ChatRepository crepository,
+                            UserRepository urepository ){
         this.mrepository = mrepository;
         this.crepository = crepository;
+        this.urepository = urepository;
     }
     @MessageMapping( "/chat/{name}" )
     @SendTo(   "/topic/chat/{name}" )
@@ -32,7 +37,11 @@ public class StompMessageController {
             .findByName( name )
             .orElseThrow(() -> new RuntimeException( "Chat not found" ));
         
-        mrepository.save( new Message( stompMessage.getText(), chat ));
+        User user = urepository
+            .findByName( stompMessage.getUser())
+            .orElseThrow(() -> new RuntimeException( "User not found" ));
+
+        mrepository.save( new Message( stompMessage.getText(), chat, user ));
         
         return stompMessage;
     }

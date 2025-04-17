@@ -8,10 +8,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Table;
+////////////////////////////////////////////////////////////////
+import lombok.Data;
+import lombok.NoArgsConstructor;
 ////////////////////////////////////////////////////////////////
 import java.util.List;
 ////////////////////////////////////////////////////////////////
 @Entity
+@Table( name="users" )
+@Data
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue( strategy=GenerationType.AUTO )
@@ -20,28 +27,11 @@ public class User {
     @Column( unique=true, nullable=false )
     private String name;
 
-    @OneToMany( cascade=CascadeType.ALL, mappedBy="chat" )
+    @OneToMany( cascade=CascadeType.ALL, mappedBy="user" )
     private List <Message> messages;
 
-    public User() {}
-    
     public User( String name ){
         this.name = name;
-    }
-    public Long getId() {
-        return id;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName( String name ){
-        this.name = name;
-    }
-    public List <Message> getMessages() {
-        return messages;
-    }
-    public void setMessages( List <Message> messages ){
-        this.messages = messages;
     }
 }
 ////////////////////////////// /////////////////    //// /  ////
@@ -49,6 +39,34 @@ public class User {
 //////////////////////////// /////////////////    //// /  //////
 /////////////////////////// /////////////////    //// /  ///////
 
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+// <> 2.1.26*: A b o x is being pulled up wooden planks inclined
+// at an angle α to the horizontal, using a rope tied to it. The
+// coefficient of friction between the crate and the planks is μ.
+// At what angle β (to the horizontal) should the rope be pulled
+// to minimize the required force?
+// #############################################################
+// ###    |            /             ###########################
+// ###    |           /             .###########################
+// ###    |          /          . `  ###########################
+// ###    V g     . `  θ    . `      ###########################
+// ###          `  m `  . `          ###########################
+// ###           `  . `              ###########################
+// ###          . `                  ###########################
+// ###      . `                      ###########################
+// ###  . `  α                       ###########################
+// #############################################################
+// #############################################################
+// #############################################################
+// #############################################################
+// #############################################################
+// #############################################################
+// #############################################################
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 // 1. きのうは月曜日でしたか。
 //    いいえ、月曜日じゃなかったです。

@@ -1,5 +1,6 @@
 log
 
+src/main/resources/static/bak/
 HELP.md
 .gradle
 build/
