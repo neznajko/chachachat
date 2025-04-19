@@ -52,7 +52,6 @@ const client = new StompJs.Client({
 client.name = "";
 client.setName = function( name ){
     this.name = name;
-    console.log( name );
 };
 ////////////////////////////////////////////////////////////////
 const select = new Select( "#select-user" );
@@ -68,10 +67,25 @@ const chat = new Chat( ".chat-con" );
 form.subscribe( e => {
     const msg = input.value();
     if( msg ){
-        chat.insert( client.name + ": " + msg );
+        client.publish({
+            destination: "/app/chat/java",
+            body: JSON.stringify({
+                "user": client.name,
+                "text": msg
+            }),
+        });
         input.clear();
     }
 });
+////////////////////////////////////////////////////////////////
+client.onConnect = function( frame ){
+    client.subscribe( "/topic/chat/java", function( msg ){
+        const stomp = JSON.parse( msg.body );
+        chat.insert( stomp.user + ": " + stomp.text );
+    });
+}
+////////////////////////////////////////////////////////////////
+client.activate();
 ////////////////////////////////////////////////////////////////
 // 24. A certain family has 6 children, consisting of 3 boys and
 // 3 girls. Assuming  that  all birth orders are equally likely,

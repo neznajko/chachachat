@@ -45,9 +45,11 @@ public class ChachachatApplication implements CommandLineRunner {
         log.info( "Boom" );
         Chat chat = new Chat( "java" );
         crepository.save( chat );
-        User user = new User( "Anton" );
-        urepository.save( user );
-        Message msg = new Message( "Booooom, haHaHa", chat, user );
+        User Anton = new User( "Anton" );
+        urepository.save( Anton );
+        User Bobi = new User( "Bobi" );
+        urepository.save( Bobi );
+        Message msg = new Message( "Booooom, haHaHa", chat, Anton );
         mrepository.save( msg );
     }
 }

@@ -49,18 +49,29 @@ public class User {
 // At what angle β (to the horizontal) should the rope be pulled
 // to minimize the required force?
 // #############################################################
-// ###    |            /             ###########################
-// ###    |           /             .###########################
-// ###    |          /          . `  ###########################
-// ###    V g     . `  θ    . `      ###########################
-// ###          `  m `  . `          ###########################
+// ###    |            /             ## Ok z o let's write t h e 
+// ###    |           /             .## N e w t o n ' s laws i n 
+// ###    |          /          . `  ## directions perpendicular
+// ###    V g     . `  θ    . `      ## a n d parallel t o t h e
+// ###          `  m `  . `          ## p    l     a     n     e
 // ###           `  . `              ###########################
 // ###          . `                  ###########################
 // ###      . `                      ###########################
 // ###  . `  α                       ###########################
 // #############################################################
-// #############################################################
-// #############################################################
+// ### mgsinα + μN = Tcosθ
+// ### N + Tsinθ = mgcosα, zo
+// ### mgsinα + μ(mgcosα - Tsinθ) = Tcosθ,
+// ### mg(sinα + μcosα) = T(cosθ + μsinθ),
+// ### T = mg(sinα + μcosα)/(cosθ + μsinθ), here we have to find
+// ### the maximum of this function f(θ) = cosθ + μsinθ,
+// ### f'(θ) = -sinθ + μcosθ = 0, zo tgθ = μ,
+// ### and β = α + arctan(μ), by the way I always forgot what is
+// ### the derivative of sin and cos which one was plus which
+// ### one is minus, so one way to remember is that cos is going
+// ### from 1 to nil that is decreasing so the derivative is
+// ### negative cos'(θ) = -sinθ, and sin is increasing from 0 to
+// ### 1 zo its derivative is positive sin'(θ) = cosθ
 // #############################################################
 // #############################################################
 // #############################################################

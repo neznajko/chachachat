@@ -29,7 +29,7 @@ a {
     align-items: center;
     justify-content: center;
 }
-/* ##########################################################   
+ ##########################################################   
    ########[ con ]###########################################
    ########################################################## */
 .con {
@@ -104,25 +104,74 @@ a {
     padding-left: 1rem;
 }
 /* ==========================================================
-   <> 2.1.27*: A person of mass m1, remaining in place, pulls
-   a load of mass m2 by a rope. The coefficient of friction
+   <> 2.1.27*: A person of mass m₁, remaining in place, pulls
+   a load of mass m₂ by a rope. The coefficient of friction
    on a horizontal plane is μ. At what minimum tension force
    of the rope will the load move from its place? At what
    angle to the horizontal plane should the rope be directed?
    ==========================================================
+   ############################ It's very good that this book
+   ############################ has solutions:) zo basically
+   ##########          0   #### this is like a combination of
+   ##########         //   #### the previous problems; like   
+   ##########        // \  #### what is the angle at which we
+   ##########  __   .` /|  #### pull a box so that the force 
+   ########## |  |.`  / |  #### is minimal, the complication 
+   ########## |  |   /   \ #### comes from the different     
+   ############################ possibilities, like: if the
+   ############################ mass of the box is very large
+   ### then it is possible for the man to start moving while
+   ### the box is still static etc. So let's write the
+   ### equations which are balanced be coz we are looking for 
+   ### minimal force and this implies zero acceleration:
    ##########################################################
    ##########################################################
-   ##########          O   ##################################
-   ##########         //   ##################################
-   ##########        // \  ##################################
-   ##########  __   .` /|  ##################################
-   ########## |  |.`  / |  ##################################
-   ########## |  |   /   \ ##################################
+   ###                       ## (1) Tcosθ = f₁ ≤ μN₁
+   ###             A N₁      ##     N₁ = Tsinθ + m₁g
+   ###             |         ## 
+   ###             |         ## (2) Tcosθ = f₂ ≤ μN₂
+   ###             +---> f₁  ##     N₂ + Tsinθ = m₂g
+   ###    N₂      /|         ################################
+   ###      A    T |         ## Let -/+ means f is less then
+   ###      |   /  |         ## or greater its critical value
+   ###      |  /   V m₁g     ## μN, so we have four scenarios
+   ###      | T              ################################
+   ###   f₂ |/ θ             ##     ¦  1  ¦  2  #############
+   ###  <---+ . . . . . .    ################################
+   ###      |                ## (a) ¦  -  ¦  -  #############
+   ###      |                ################################
+   ###      |                ## (b) ¦  -  ¦  +  #############
+   ###      V m₂g            ################################
+   ###                       ## (c) ¦  +  ¦  -  #############
    ##########################################################
+   ############################ (d) ¦  +  ¦  +  #############
    ##########################################################
+   ### In case (a) both wont moo, in (b) the person will stay
+   ### still and the box will start moving with constant 
+   ### velocity, in (c) the box will be still and the person 
+   ### will start moving, in (d) both will move with constant
+   ### velocities. So we are interested in cases (b) and (d)
    ##########################################################
+   ### (b) Tcosθ = μN₂      ; Tcosθ ≤ μN₁
+   ###     N₂ + Tsinθ = m₂g ; N₁ = Tsinθ + m₁g
    ##########################################################
-   ##########################################################
+   ### Tcosθ = μ(m₂g - Tsinθ), T(cosθ + μsinθ) = μm₂g
+   ### T = μm₂g/(cosθ + μsinθ), T is minimum at tgθ = μ
+   ### if we put T into the equation for 1 we'll get:
+   ### Tcosθ ≤ μ(Tsinθ + m₁g), T(cosθ - μsinθ) ≤ μm₁g
+   ### μm₂g(cosθ - μsinθ)/(cosθ + μsinθ) ≤ μm₁g
+   ### m₂(1 - μtgθ)/(1 + μtgθ) ≤ m₁,
+   ### m₂(1 - μ²)/(1 + μ²) ≤ m₁, that is the condition for
+   ### m₁ being static is m₂ ≤ m₁(1 + μ²)/(1 - μ²) if this
+   ### is not fulfilled f₁ will reach its critical value and
+   ### the person will start rolling as well
+   ### (d) Tcosθ = μN₂      ; Tcosθ = μN₁
+   ###     N₂ + Tsinθ = m₂g ; N₁ = Tsinθ + m₁g
+   ### T = μm₂g/(cosθ + μsinθ) = μm₁g/(cosθ - μsinθ),
+   ### m₂/m₁ = (1 + μtgθ)/(1 - μtgθ),
+   ### (m₂/m₁)(1 - μtgθ) = 1 + μtgθ = m₂/m₁ - μ(m₂/m₁)tgθ
+   ### μtgθ(1 + m₂/m₁) = m₂/m₁ - 1;
+   ### tgθ = (m₂ - m₁)/μ(m₂ + m₁), m₂ > m₁(1 + μ²)/(1 - μ²)
    ##########################################################
    ##########################################################
    ##########################################################
