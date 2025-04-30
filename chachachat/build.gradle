@@ -27,13 +27,51 @@ dependencies {
     // Lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    // Web
-    implementation 'org.webjars:bootstrap:5.3.3'
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    implementation 'org.webjars:webjars-locator-core' // Helps with version resolution
+    implementation 'org.webjars:bootstrap:5.3.3' // Latest Bootstrap 5
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+////////////////////////////////////////////////////////////////
+// 2.1.29: A car with a powerful engine accelerates from rest to
+// 72 km/h in 5 seconds. Determine t h e coefficient of friction
+// between the wheels and the road. What i s the minimum braking
+// distance for the car after reaching this speed?
+////////////////////////////////////////////////////////////////
+// So it seems e v e n if w e have v e r y powerfully engine the
+// m a x i m u m acceleration it c a n achieve i s bound b y the
+// coefficient o f friction μ a n d gravitational acceleration g,
+// for example f1 car on an ice. So this claims that some car is
+// accelerating from 0 to 100 km/h for -3.5 seconds are a t best
+// misleading cos they depend on t h e quality o f the tires and
+// the road. OK so the force of friction is directed opposite of
+// the relative velocity between surfaces. So if o u r c a r i s
+// moving left, and there i s slipping between the tires and the
+// surface t h e relative velocity w i l l be directed ryte with
+// respect of the c a r, so the force of friction acting upon it
+// is directed on left and i t s maximum value is μmg where m is
+// is the mass of the car. zo f = ma = μmg, a = μg
+// N o w we can w  r  i  t  e t h e k  i  n  e  m  a  t  i  c  s:
+// v = 72 km/h = 72 1000m/3600s = 20 m/s
+// t = 5s
+// v = at = μgt, μ = v/gt = 20/(10*5) = 0.4
+// the breaking distance x will be e q u a l to the acceleration
+// distance x = at²/2 = vt/2 = 20*5/2 m = 50m                  «
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////

@@ -27,11 +27,15 @@ public class User {
     @Column( unique=true, nullable=false )
     private String name;
 
+    @Column( unique=true, nullable=false )
+    private String password;
+
     @OneToMany( cascade=CascadeType.ALL, mappedBy="user" )
     private List <Message> messages;
 
-    public User( String name ){
+    public User( String name, String password ){
         this.name = name;
+        this.password = password;
     }
 }
 ////////////////////////////// /////////////////    //// /  ////
