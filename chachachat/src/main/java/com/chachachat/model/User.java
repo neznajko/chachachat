@@ -25,7 +25,7 @@ public class User {
     private Long id;
 
     @Column( unique=true, nullable=false )
-    private String name;
+    private String username;
 
     @Column( unique=true, nullable=false )
     private String password;
@@ -33,8 +33,8 @@ public class User {
     @OneToMany( cascade=CascadeType.ALL, mappedBy="user" )
     private List <Message> messages;
 
-    public User( String name, String password ){
-        this.name = name;
+    public User( String username, String password ){
+        this.username = username;
         this.password = password;
     }
 }

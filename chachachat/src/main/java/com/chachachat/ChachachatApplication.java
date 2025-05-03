@@ -11,7 +11,6 @@ import org.springframework.boot.CommandLineRunner;
 import com.chachachat.model.Chat;
 import com.chachachat.model.User;
 import com.chachachat.model.Message;
-
 import com.chachachat.service.UserService;
 import com.chachachat.service.ChatService;
 import com.chachachat.service.MessageService;
@@ -43,7 +42,7 @@ public class ChachachatApplication implements CommandLineRunner {
     @Override
     public void run( String ... args ) throws Exception {
         log.info( "Boom" );
-        Chat chat = chatService.createChat( "Spring Boot" );
+        Chat chat = chatService.createChat( "java" );
         User Anton = userService.register( "Anton", "Anton" );
         User Bobi = userService.register( "Bobi", "Bobi" );
         msgService.save( "Vrooom", chat, Anton );

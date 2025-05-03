@@ -10,27 +10,27 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 ////////////////////////////////////////////////////////////////
 import com.chachachat.model.Chat;
-import com.chachachat.repository.ChatRepository;
+import com.chachachat.service.ChatService;
 ////////////////////////////////////////////////////////////////
 @RestController
 @RequestMapping( "api/chat" )
 public class ChatController {
 
-    private final ChatRepository crepository;
+    private final ChatService chatService;
 
-    public ChatController( ChatRepository crepository ){
-        this.crepository = crepository;
+    public ChatController( ChatService chatService ){
+        this.chatService = chatService;
     }
     @PostMapping( "/{name}" )
     public ResponseEntity <?> create( @PathVariable String name ){
         
-        if( crepository.findByName( name ).isPresent()) {
+        if( chatService.isPresent( name )){
             
             return ResponseEntity
                 .status( HttpStatus.CONFLICT )
                 .body( "That chat already exists" );
         }
-        Chat chat = crepository.save( new Chat( name ));
+        Chat chat = chatService.createChat( name );
         
         return ResponseEntity
             .status( HttpStatus.CREATED )

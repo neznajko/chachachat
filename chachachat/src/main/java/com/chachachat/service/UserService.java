@@ -3,11 +3,11 @@ package com.chachachat.service;
 ////////////////////////////////////////////////////////////////////////
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 ////////////////////////////////////////////////////////////////////////
 import com.chachachat.repository.UserRepository;
 import com.chachachat.model.User;
-////////////////////////////////////////////////////////////////////////
-import java.util.Optional;
 ////////////////////////////////////////////////////////////////////////
 @Service
 public class UserService {
@@ -20,12 +20,23 @@ public class UserService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
-    public Optional <User> findByName( String name ){
-        return userRepository.findByName( name );
+    public User findByUsername( String username ){
+        return userRepository
+            .findByUsername( username )
+            .orElseThrow(() -> new RuntimeException( "User not found" ));
     }
     public User register( String username, String password ){
         password = passwordEncoder.encode( password );
         return userRepository.save( new User( username, password ));
+    }
+    public UserDetails getUserDetails( String username ){
+        User user = findByUsername( username );
+        return org.springframework.security.core.userdetails.User
+            .builder()
+            .username( user.getUsername())
+            .password( user.getPassword())
+            .authorities( new SimpleGrantedAuthority( "NONE" ))
+            .build();
     }
 }
 ////////////////////////////////////////////////////////////////////////

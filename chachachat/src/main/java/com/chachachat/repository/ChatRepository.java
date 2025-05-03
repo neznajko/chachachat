@@ -10,7 +10,7 @@ import com.chachachat.model.Chat;
 public interface ChatRepository
     extends CrudRepository <Chat,Long> {
     
-    Optional <Chat> findByName( String name );
+    Optional <Chat> findByChatname( String chatname );
 }
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////

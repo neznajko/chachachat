@@ -10,7 +10,7 @@ import com.chachachat.model.User;
 public interface UserRepository
     extends CrudRepository <User,Long> {
     
-    Optional <User> findByName( String name );
+    Optional <User> findByUsername( String username );
 }
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////

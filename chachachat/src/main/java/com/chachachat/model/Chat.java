@@ -23,13 +23,13 @@ public class Chat {
     private Long id;
 
     @Column( unique=true, nullable=false )
-    private String name;
+    private String chatname;
 
     @OneToMany( cascade=CascadeType.ALL, mappedBy="chat" )
     private List <Message> messages;
 
-    public Chat( String name ){
-        this.name = name;
+    public Chat( String chatname ){
+        this.chatname = chatname;
     }
 }
 ////////////////////////////////////////////////////////////////

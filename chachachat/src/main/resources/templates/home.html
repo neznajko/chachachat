@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head::head}"></head>
+
+<body>
+    <h1 class="display-2">Welcome!</h1>
+    <div th:if="${isAnonymous}">
+        <a href="/register">Register</a> |
+        <a href="/login">Login</a>
+    </div>
+    <div th:unless="${isAnonymous}">
+        <a href="/welcome">Go to Welcome Page</a>
+    </div>
+</body>
+</html>

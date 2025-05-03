@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import com.chachachat.repository.ChatRepository;
 import com.chachachat.model.Chat;
 ////////////////////////////////////////////////////////////////////////
-import java.util.Optional;
-////////////////////////////////////////////////////////////////////////
 @Service
 public class ChatService {
     
@@ -16,11 +14,16 @@ public class ChatService {
     public ChatService( ChatRepository chatRepository ){
         this.chatRepository = chatRepository;
     }
-    public Optional <Chat> findByName( String name ){
-        return chatRepository.findByName( name );
+    public Chat findByChatname( String chatname ){
+        return chatRepository
+            .findByChatname( chatname )
+            .orElseThrow(() -> new RuntimeException( "Chat not found" ));
     }
-    public Chat createChat( String chatName ){
-        return chatRepository.save( new Chat( chatName ));
+    public boolean isPresent( String chatname ){
+        return chatRepository.findByChatname( chatname ).isPresent();
+    }
+    public Chat createChat( String chatname ){
+        return chatRepository.save( new Chat( chatname ));
     }
 }
 ////////////////////////////////////////////////////////////////////////
