@@ -14,17 +14,22 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.web.bind.annotation.RequestParam;
 ////////////////////////////////////////////////////////////////
 import com.chachachat.model.User;
+import com.chachachat.service.UserService;
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 @Controller
 public class AuthController {
 
     private final AuthenticationManager authManager;
+    private final UserService userService;
 
-    AuthController( AuthenticationManager authManager ){
+    AuthController( AuthenticationManager authManager,
+                    UserService userService ){
         this.authManager = authManager;
+        this.userService = userService;
     }
 
     @GetMapping( "/login" )
@@ -44,6 +49,25 @@ public class AuthController {
         } catch( AuthenticationException e ){
             return "redirect:/login?error";
         }
+    }
+
+    @GetMapping( "/register" )
+    public String getRegister( Model model ){
+        model.addAttribute( "user", new User());
+        return "register";
+    }
+
+    @PostMapping( "/register" )
+    public String postRegister( @ModelAttribute User user,
+                                @RequestParam String retypePassword ){
+        if( userService.existsByUsername( user.getUsername())){
+            return "redirect:/register?error=username";
+        }
+        if( !retypePassword.equals( user.getPassword())){
+            return "redirect:/register?error=password";
+        }
+        userService.register( user.getUsername(), user.getPassword());
+        return "redirect:/login";
     }
 }
 ////////////////////////////////////////////////////////////////
@@ -78,8 +102,8 @@ public class AuthController {
 // ##   f₀ <-----| m₂                      |
 // ##            +-------------------------+-----> m₂a
 // ## Here m₁₂a are the phony forces which allow us to write the
-// ## Newton equation in non-inertial s y s t e m moving w i t h
-// ## acceleration a, if f₀ i s increasing the m₂ acceleration a
+// ## Newton laws in a n o n inertial s y s t e m moving w i t h
+// ## acceleration a, if f₀ i s increasing t h e m₂ acceleration
 // ## in the l a b system will increase as well and f will reach
 // ## its critical value μN₁ = μm₁g:
 // ## f = μm₁g = m₁a, a = μg
@@ -94,7 +118,7 @@ public class AuthController {
 // ## L = wt²/2, so t = √(2L/w) = √(2Lm₂/(f₀ - μ(m₁ + m₂)g))   «
 // ##
 // ## b) Let's here write the laws directly in the lab system so
-// ## so we don't need to go back and forth:
+// ## we don't need to go back and forth:
 // ## f₀ - μm₁g = m₁a₁
 // ## μm₁g = m₂a₂,
 // ## a₁ = (f₀ - μm₁g)/m₁, a₂ = μgm₁/m₂                        «

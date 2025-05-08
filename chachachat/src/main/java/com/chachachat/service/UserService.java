@@ -38,17 +38,43 @@ public class UserService {
             .authorities( new SimpleGrantedAuthority( "NONE" ))
             .build();
     }
+    public boolean existsByUsername( String username ){
+        return userRepository.existsByUsername( username );
+    }
 }
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
+//
 // Exercise 1.3.1. (a) W r i t e a formal definition in the s t y l e of
 // Definition 1.3.2 for the infimum or greatest l o w e r bound of a set.
 // (b) Now, state and prove a version o f Lemma 1.3.8 for greatest lower
 // bounds.
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
+//
+// It's interesting that for real numbers there is a sup A for e v e r y
+// non empty set A bounded from above, but this is not true for rational
+// numbers; { q ∈ Q: q² < 2 } has neither m a x i m u m or supremum. The
+// definition for infimum is more or less the same:
+//
+// Definition. A real number s is the greatest lower bound for a
+// set A ⊆ R if it meets the following two criteria:
+// (i) s is a lower bound for A;
+// (ii) if b is any lower bound for A, then b ≤ s.
+//
+// Lemma. Assume s ∈ R is a lower bound for a set A ⊆ R. Then s = inf A
+// if and only if, for every choice of ε > 0, there exists an element
+// a ∈ A satisfying s + ε > a.
+//
+// => [ if s = inf A, then ∃ a ∈ A: s + ε > a, for any ε > 0 ]
+// Let's pick some ε > 0, becoz s is infimum that is the greatest lower
+// bound, s + ε is n o t a l o w e r bound, so there exist a: a < s + ε
+// <= [ if for e v e r y ε > 0, ∃ a ∈ A: s + ε > a, t h e n s = inf A ]
+// Here we have to p r o v e (ii) becoz (i) i s true by assumption, let
+// b is some other lower bound and let s < b, if we take ε = b - s then
+// from s + ε > a, w e ' l l get s + b - s > a, that is b > a, and b is
+// not a lower bound, so by contradiction b ≤ s and s = inf A
+//
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
