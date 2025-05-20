@@ -1,34 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <!-- Bootstrap CSS via WebJars -->
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
-</head>
+  <head th:replace="~{fragments/head::head( title='Login' )}">
+  </head>
 <body>
-
-    <h1 class="display-2">Login Page</h1>
-
-    <form th:action="@{/login}" th:object="${user}" method="post">
-
-        <!-- username -->
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" th:field="*{username}" />
-        </div>
-
-        <!-- password -->
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" th:field="*{password}" />
-        </div>
-        
-        <!-- submit -->
-        <button type="submit">Login</button>
-
-    </form>
-
-    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <div th:replace="~{fragments/auth::auth(
+                   title='Login Page',
+                   action='/login',
+                   retype=false )}">
+  </div>
 </body>
 </html>
+<!------------------------------------------------------------->

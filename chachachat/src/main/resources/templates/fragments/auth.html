@@ -1,0 +1,23 @@
+<div th:fragment="auth( title, action, retype )">
+  <h1 class="display-2" th:text="${title}">Auth</h1>
+
+  <form th:action="@{${action}}" th:object="${user}" method="post">
+    <!-- Username -->
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" th:field="*{username}" required />
+    </div>
+    <!-- Password -->
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" th:field="*{password}" required />
+    </div>
+    <!-- Conditionally show retype password -->
+    <div th:if="${retype}">
+      <label for="retypePassword">Retype Password:</label>
+      <input type="password" id="retypePassword" name="retypePassword" required />
+    </div>
+    <!-- Submit button -->
+    <button type="submit" th:text="${title}">Submit</button>
+  </form>
+</div>

@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-
-<head th:replace="~{fragments/head::head}"></head>
+<head th:replace="~{fragments/head::head( title='chachachat' )}"></head>
 
 <body>
     <h1 class="display-2">Welcome!</h1>
     <div th:if="${isAnonymous}">
-        <a href="/register">Register</a> |
+        <a href="/register">R eg i s t e r</a> |
         <a href="/login">Login</a>
     </div>
     <div th:unless="${isAnonymous}">
