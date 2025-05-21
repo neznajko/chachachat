@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap</title>
+  <link rel="stylesheet" href="css/main.css"> <!-- Compiled CSS -->
+</head>
+<body class="bg-primary">
+<!----------------------------------------------------------------------------->
+  <!-- Mobile Horizontal Navbar -->
+  <nav class="navbar navbar-dark bg-dark d-md-none">
+    <div class="container-fluid">
+      <!-- brand -->
+      <a class="navbar-brand opacity-75" href="#">
+        <i class="bi bi-chat me-2"></i> chachachat
+      </a>
+      <!-- collapse toggler -->
+      <button 
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mobileNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- menu links -->
+      <div class="collapse navbar-collapse" id="mobileNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="bi bi-rainbow me-1"></i> Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="bi bi-at me-1"></i> Messages
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="d-none d-md-flex">
+  <!-- a b c d e f g h i j k l m n o p q r s t u v w x y z
+    align-items-center
+    bg-white
+    border-bottom
+    btn
+    btn-toggle *
+    btn-toggle-nav *
+    collapse show
+    d-flex
+    flex-shrink-0
+    fw-normal
+    link-dark
+    list-unstyled
+    mb-1
+    mb-3
+    p-3
+    pb-1
+    pb-3
+    rounded
+    small
+    text-decoration-none
+  -->
+    <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+      <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+        <i class="bi bi-chat me-2"></i>
+        <span class="fs-5 fw-semibold">chachachat</span>
+      </a>
+
+      <ul class="list-unstyled">
+        <li class="mb-1">
+          <button class="btn btn-toggle align-items-center rounded" 
+                  data-bs-toggle="collapse" 
+                  data-bs-target="#home-collapse" 
+                  aria-expanded="true">
+            Home
+          </button>
+          <div class="collapse show" id="home-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="#" class="link-dark rounded">Overview</a></li>
+              <li><a href="#" class="link-dark rounded">Updates</a></li>
+              <li><a href="#" class="link-dark rounded">Reports</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="mb-1">
+          <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+            Dashboard
+          </button>
+          <div class="collapse" id="dashboard-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="#" class="link-dark rounded">Overview</a></li>
+              <li><a href="#" class="link-dark rounded">Weekly</a></li>
+              <li><a href="#" class="link-dark rounded">Monthly</a></li>
+              <li><a href="#" class="link-dark rounded">Annually</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="mb-1">
+          <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+            Orders
+          </button>
+          <div class="collapse" id="orders-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="#" class="link-dark rounded">New</a></li>
+              <li><a href="#" class="link-dark rounded">Processed</a></li>
+              <li><a href="#" class="link-dark rounded">Shipped</a></li>
+              <li><a href="#" class="link-dark rounded">Returned</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="border-top my-3"></li>
+        <li class="mb-1">
+          <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+            Account
+          </button>
+          <div class="collapse" id="account-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="#" class="link-dark rounded">New...</a></li>
+              <li><a href="#" class="link-dark rounded">Profile</a></li>
+              <li><a href="#" class="link-dark rounded">Settings</a></li>
+              <li><a href="#" class="link-dark rounded">Sign out</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+<!----------------------------------------------------------------------------->
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
+<!-- #######################################################
+     2.1.36*. The velocity of a body of mass m in a viscous
+     liquid decreases with the distance traveled according
+     to the law v = v0 - bl, where v0 is the initial
+     velocity and b is a constant coefficient. How does the
+     force of viscous friction acting on the body from the
+     liquid depend on the velocity of the body?
+     
+     ####################################################### -->

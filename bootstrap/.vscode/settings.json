@@ -1,0 +1,13 @@
+{
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/css" // Outputs CSS to `/css/main.css`
+    }
+  ],
+  "liveSassCompile.settings.excludeList": [
+    "/**/node_modules/**"
+  ],
+  "liveSassCompile.settings.showOutputWindowOn": "None"
+}
