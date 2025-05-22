@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
   <title>Bootstrap</title>
   <link rel="stylesheet" href="css/main.css"> <!-- Compiled CSS -->
 </head>
 <body class="bg-primary">
-<!----------------------------------------------------------------------------->
+<!------------------------------------------------------------->
   <!-- Mobile Horizontal Navbar -->
   <nav class="navbar navbar-dark bg-dark d-md-none">
     <div class="container-fluid">
@@ -40,8 +41,8 @@
       </div>
     </div>
   </nav>
-
-  <main class="d-none d-md-flex">
+<!------------------------------------------------------------->
+  <main class="d-flex">
   <!-- a b c d e f g h i j k l m n o p q r s t u v w x y z
     align-items-center
     bg-white
@@ -64,83 +65,142 @@
     small
     text-decoration-none
   -->
-    <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-      <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-        <i class="bi bi-chat me-2"></i>
-        <span class="fs-5 fw-semibold">chachachat</span>
-      </a>
+<!------------------------------------------------------------->
+  <div class="d-none d-md-block flex-shrink-0 p-3 bg-white"
+       style="width: 280px;">
+    <a href="/" class="d-flex align-items-center pb-3 mb-3
+                       link-dark text-decoration-none
+                       border-bottom">
+      <i class="bi bi-chat me-2"></i>
+      <span class="fs-5 fw-semibold">chachachat</span>
+    </a>
 
-      <ul class="list-unstyled">
-        <li class="mb-1">
-          <button class="btn btn-toggle align-items-center rounded" 
-                  data-bs-toggle="collapse" 
-                  data-bs-target="#home-collapse" 
-                  aria-expanded="true">
-            Home
-          </button>
-          <div class="collapse show" id="home-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="#" class="link-dark rounded">Overview</a></li>
-              <li><a href="#" class="link-dark rounded">Updates</a></li>
-              <li><a href="#" class="link-dark rounded">Reports</a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="mb-1">
-          <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-            Dashboard
-          </button>
-          <div class="collapse" id="dashboard-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="#" class="link-dark rounded">Overview</a></li>
-              <li><a href="#" class="link-dark rounded">Weekly</a></li>
-              <li><a href="#" class="link-dark rounded">Monthly</a></li>
-              <li><a href="#" class="link-dark rounded">Annually</a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="mb-1">
-          <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-            Orders
-          </button>
-          <div class="collapse" id="orders-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="#" class="link-dark rounded">New</a></li>
-              <li><a href="#" class="link-dark rounded">Processed</a></li>
-              <li><a href="#" class="link-dark rounded">Shipped</a></li>
-              <li><a href="#" class="link-dark rounded">Returned</a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="border-top my-3"></li>
-        <li class="mb-1">
-          <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-            Account
-          </button>
-          <div class="collapse" id="account-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="#" class="link-dark rounded">New...</a></li>
-              <li><a href="#" class="link-dark rounded">Profile</a></li>
-              <li><a href="#" class="link-dark rounded">Settings</a></li>
-              <li><a href="#" class="link-dark rounded">Sign out</a></li>
-            </ul>
-          </div>
-        </li>
-      </ul>
+    <ul class="list-unstyled">
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#home-collapse" 
+                aria-expanded="true">
+          Home
+        </button>
+        <div class="collapse show" id="home-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal
+                     pb-1 small">
+            <li><a href="#" class="link-dark rounded">
+                Overview</a></li>
+            <li><a href="#" class="link-dark rounded">
+                Updates</a></li>
+            <li><a href="#" class="link-dark rounded">
+                Reports</a></li>
+          </ul>
+        </div>
+      </li>
+<!------------------------------------------------------------->
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded
+                       collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#dashboard-collapse"
+                aria-expanded="false">
+          Dashboard
+        </button>
+        <div class="collapse" id="dashboard-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1
+                     small">
+            <li><a href="#" class="link-dark rounded">
+                Overview</a></li>
+            <li><a href="#" class="link-dark rounded">
+                Weekly</a></li>
+            <li><a href="#" class="link-dark rounded">
+                Monthly</a></li>
+            <li><a href="#" class="link-dark rounded">
+                Annually</a></li>
+          </ul>
+        </div>
+      </li>
+<!------------------------------------------------------------->
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded
+                       collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#orders-collapse"
+                aria-expanded="false">
+          Orders
+        </button>
+        <div class="collapse" id="orders-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1
+                     small">
+            <li><a href="#" class="link-dark rounded">
+                New</a></li>
+            <li><a href="#" class="link-dark rounded">
+                Processed</a></li>
+            <li><a href="#" class="link-dark rounded">
+                Shipped</a></li>
+            <li><a href="#" class="link-dark rounded">
+                Returned</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="border-top my-3"></li>
+<!------------------------------------------------------------->
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded
+                       collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#account-collapse"
+                aria-expanded="false">
+          Account
+        </button>
+        <div class="collapse" id="account-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1
+                     small">
+            <li><a href="#" class="link-dark rounded">
+                New...</a></li>
+            <li><a href="#" class="link-dark rounded">
+                Profile</a></li>
+            <li><a href="#" class="link-dark rounded">
+                Settings</a></li>
+            <li><a href="#" class="link-dark rounded">
+                Sign out</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+<!------------------------------------------------------------->
+    <!-- Main Content -->
+    <div class="flex-grow-1 p-4">
+      <h1>Content Area</h1>
+      <p>This area expands to fill remaining space.</p>
     </div>
-  </main>
 
-<!----------------------------------------------------------------------------->
+  </main>
+<!------------------------------------------------------------->
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
 <!-- #######################################################
-     2.1.36*. The velocity of a body of mass m in a viscous
-     liquid decreases with the distance traveled according
-     to the law v = v0 - bl, where v0 is the initial
-     velocity and b is a constant coefficient. How does the
-     force of viscous friction acting on the body from the
+     2.1.36*. The velocity of a body of mass m i n a viscous
+     liquid decreases with t h e distance traveled according
+     to t h e law v = v₀ - βl, where v₀ is the i n i t i a l
+     velocity and β i s a constant coefficient. How does the
+     force of viscous friction acting on the body from t h e
      liquid depend on the velocity of the body?
-     
+
+     The motion o f fluids is basically split into two modes,
+     one is the turbulent m o t i o n where each part of the
+     fluid is acting on its own so t o speak, the other is a
+     more slow and predictable motion, where different parts
+     of the fluid are moving as separate layers, for example
+     in the flow of a slow river the velocity of t h e river
+     near its shores is close t o zero and slowly increasing
+     towards its maximum velocity a t its center. In h i g h
+     viscosity liquids like oil the motion i s predominantly
+     of the second type, while i n light fluids like air the
+     turbulent motion takes place. Ok b a c k to the problem
+     the Newton law is F = ma = m(dv/dt), now i f we put the
+     formula for v here w e ' l l get F = m[d(v₀ - βl)/dt] =
+     -mβ(dl/dt) = -mβv; the minus s i g n indicates that the
+     force is directed opposite t o the velocity of the body
      ####################################################### -->
