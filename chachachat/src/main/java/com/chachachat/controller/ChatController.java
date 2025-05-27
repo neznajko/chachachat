@@ -24,7 +24,7 @@ public class ChatController {
     @PostMapping( "/{chatname}" )
     public ResponseEntity <?> create( @PathVariable String chatname ){
         
-        if( chatService.isPresent( chatname )){
+        if( chatService.existsByChatname( chatname )){
             
             return ResponseEntity
                 .status( HttpStatus.CONFLICT )

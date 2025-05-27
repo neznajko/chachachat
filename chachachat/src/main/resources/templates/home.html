@@ -1,15 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head th:replace="~{fragments/head::head( title='chachachat' )}"></head>
-
+<head th:replace="~{fragments/head::head( 
+      title='chachachat' )}"></head>
 <body>
-    <h1 class="display-2">Welcome!</h1>
-    <div th:if="${isAnonymous}">
-        <a href="/register">R eg i s t e r</a> |
-        <a href="/login">Login</a>
-    </div>
-    <div th:unless="${isAnonymous}">
-        <a href="/welcome">Go to Welcome Page</a>
-    </div>
+  <h1 class="display-2">Welcome!</h1>
+  <div th:if="${isAnonymous}">
+    <a href="/register">R eg i s t e r</a>
+    <a href="/login">Login</a>
+  </div>
+  <div th:unless="${isAnonymous}">
+    <a href="/welcome">Go to Welcome Page</a>
+    <form th:action="@{/logout}" method="post">
+      <button type="submit">Logout</button>
+    </form>
+  </div>
+  <div th:replace="fragments/scripts::scripts"></div>
 </body>
 </html>
+<!------------------------------------------------------------->
+<!-- ###########################################################
+     3. If a|b and b|c, prove that a|c
+
+     a|b means b = ad for some integer d, b|c means c = be for
+     some integer e, so c = be = a(de), hence a|c              «
+     ###########################################################
+     4. (a) If a|b and a|c, prove that a|(b + c)
+
+     Again b = ad and c = ae for some integers d and e, so
+     b + c = a(d + e) and a|(b + c)                            «
+     ###########################################################
+     (b) If a|b and a|c, prove that a|(br + ct) for any r,t ∈ ℤ
+
+     b = ad, c = ae; br + ct = adr + aet = a(dr + et), so
+     a | (br + ct)                                             «
+     ###########################################################
+     5. If a and b are nonzero integers such that a|b and b|a,
+     prove that a = ± b
+
+     a|b means b = ac, b|a means a = bd, so b = b(dc) and we
+     have dc = 1, where d and c are integers this is possible
+     only if d = c = 1, or d = c = -1                          «
+     ###########################################################
+     6. If a|b and c|d, prove that ac|bd
+
+     b = ae, d = cf; bd = aecf = (ac)(ef)                      «
+     ###########################################################
+     7. If a < 0, find (a,0)
+     ###########################################################
+     ###########################################################
+                                                             -->
+<!------------------------------------------------------------->

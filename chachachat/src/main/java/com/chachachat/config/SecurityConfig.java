@@ -34,7 +34,6 @@ public class SecurityConfig {
                 .requestMatchers(
                         "/h2-console/**",
                         "/webjars/**",
-                        "/static/**",
                         "/css/**",
                         "/js/**",
                         "/",

@@ -19,8 +19,8 @@ public class ChatService {
             .findByChatname( chatname )
             .orElseThrow(() -> new RuntimeException( "Chat not found" ));
     }
-    public boolean isPresent( String chatname ){
-        return chatRepository.findByChatname( chatname ).isPresent();
+    public boolean existsByChatname( String chatname ){
+        return chatRepository.existsByChatname( chatname );
     }
     public Chat createChat( String chatname ){
         return chatRepository.save( new Chat( chatname ));

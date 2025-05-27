@@ -11,6 +11,7 @@ public interface ChatRepository
     extends CrudRepository <Chat,Long> {
     
     Optional <Chat> findByChatname( String chatname );
+    boolean existsByChatname( String chatname );
 }
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////

@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.authentication
+                          .UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context
+                                        .SecurityContextHolder;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication
+                                   .AuthenticationManager;
 import org.springframework.web.bind.annotation.RequestParam;
 ////////////////////////////////////////////////////////////////
 import com.chachachat.model.User;
@@ -41,10 +44,13 @@ public class AuthController {
     @PostMapping( "/login" )
     public String postLogin( @ModelAttribute User user ){
         try {
-            Authentication auth = authManager.authenticate( 
-                    new UsernamePasswordAuthenticationToken( 
-                        user.getUsername(), user.getPassword()));
-            SecurityContextHolder.getContext().setAuthentication( auth );
+            String username = user.getUsername();
+            String password = user.getPassword();
+            Authentication auth = authManager.authenticate
+                ( new UsernamePasswordAuthenticationToken
+                  ( username, password ));
+            SecurityContextHolder.getContext()
+                                 .setAuthentication( auth );
             return "redirect:/welcome";
         } catch( AuthenticationException e ){
             return "redirect:/login?error";
@@ -59,14 +65,15 @@ public class AuthController {
 
     @PostMapping( "/register" )
     public String postRegister( @ModelAttribute User user,
-                                @RequestParam String retypePassword ){
+                                @RequestParam String retype ){
         if( userService.existsByUsername( user.getUsername())){
             return "redirect:/register?error=username";
         }
-        if( !retypePassword.equals( user.getPassword())){
+        if( !retype.equals( user.getPassword())){
             return "redirect:/register?error=password";
         }
-        userService.register( user.getUsername(), user.getPassword());
+        userService.register( user.getUsername(),
+                              user.getPassword());
         return "redirect:/login";
     }
 }

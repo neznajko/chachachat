@@ -41,7 +41,7 @@ public class ChachachatApplication implements CommandLineRunner {
 	}
     @Override
     public void run( String ... args ) throws Exception {
-        log.info( "Boom" );
+        log.error( "Boom" );
         Chat chat = chatService.createChat( "java" );
         User Anton = userService.register( "Anton", "Anton" );
         User Bobi = userService.register( "Bobi", "Bobi" );
