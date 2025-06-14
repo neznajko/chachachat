@@ -13,6 +13,9 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 ////////////////////////////////////////////////////////////////
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+////////////////////////////////////////////////////////////////
 import java.util.List;
 ////////////////////////////////////////////////////////////////
 @Entity
@@ -28,9 +31,11 @@ public class User {
     private String username;
 
     @Column( unique=true, nullable=false )
+    @JsonIgnore
     private String password;
 
     @OneToMany( cascade=CascadeType.ALL, mappedBy="user" )
+    @JsonManagedReference
     private List <Message> messages;
 
     public User( String username, String password ){

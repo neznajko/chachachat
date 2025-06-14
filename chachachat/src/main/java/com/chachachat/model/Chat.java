@@ -12,6 +12,8 @@ import jakarta.persistence.CascadeType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 ////////////////////////////////////////////////////////////////
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+////////////////////////////////////////////////////////////////
 import java.util.List;
 ////////////////////////////////////////////////////////////////
 @Entity
@@ -26,6 +28,7 @@ public class Chat {
     private String chatname;
 
     @OneToMany( cascade=CascadeType.ALL, mappedBy="chat" )
+    @JsonManagedReference
     private List <Message> messages;
 
     public Chat( String chatname ){

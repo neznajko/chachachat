@@ -9,6 +9,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import com.chachachat.repository.UserRepository;
 import com.chachachat.model.User;
 ////////////////////////////////////////////////////////////////////////
+import java.util.List;
+////////////////////////////////////////////////////////////////////////
 @Service
 public class UserService {
     
@@ -40,6 +42,9 @@ public class UserService {
     }
     public boolean existsByUsername( String username ){
         return userRepository.existsByUsername( username );
+    }
+    public List <User> findAll() {
+        return userRepository.findAll();
     }
 }
 ////////////////////////////////////////////////////////////////////////

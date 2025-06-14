@@ -17,6 +17,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 ////////////////////////////////////////////////////////////////
+import com.fasterxml.jackson.annotation.JsonBackReference;
+////////////////////////////////////////////////////////////////
 import java.util.Date;
 ////////////////////////////////////////////////////////////////
 @Entity
@@ -37,10 +39,12 @@ public class Message {
 
     @ManyToOne( fetch=FetchType.LAZY )
     @JoinColumn( name="chat_id" )
+    @JsonBackReference
     private Chat chat;
 
     @ManyToOne( fetch=FetchType.LAZY )
     @JoinColumn( name="user_id" )
+    @JsonBackReference
     private User user;
 
     public Message( String text, Chat chat, User user ){
