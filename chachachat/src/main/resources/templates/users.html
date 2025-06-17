@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/head::head( 
+      title='chachachat' )}"></head>
+<body>
+  <h1 class="display-4">Users</h1>
+  <ul>
+    <th:block th:each="user, iterStat: ${users}">
+      <li>
+        <strong th:text="${user.username}">User Name</strong>:
+        <ul>
+
+          <th:block th:each="chat: ${userchats[iterStat.index]}">
+            <li th:text="${chat}">Chat Title</li>
+          </th:block>
+
+        </ul>
+      </li>
+    </th:block>
+  </ul>
+  <div th:replace="fragments/scripts::scripts"></div>
+</body>
+</html>
+<!--------------------------------------------------------------
+Exercise 1.3.9. (a) If sup A < sup B, show that there exists an 
+element b ∈ B that is an upper bound for A.
+(b) Give an example to show that this is not always the case if
+we only assume sup A ≤ sup B.
+(a) If we take ε = sup B - sup A > 0, then sup B - ε is no 
+    longer an upper bound, that is there exist an element b ∈ B,
+    such that sup B - ε = sup A < b
+(b) here if sup A = sub B, then sub B might not be an element of
+    B like B = { 1/n, n ∈ N } has sub B = 1 ∉ B
+--------------------------------------------------------------->

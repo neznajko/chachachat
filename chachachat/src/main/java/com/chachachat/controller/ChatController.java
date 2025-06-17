@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.GetMapping;
 ////////////////////////////////////////////////////////////////
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
@@ -12,8 +13,10 @@ import org.springframework.http.HttpStatus;
 import com.chachachat.model.Chat;
 import com.chachachat.service.ChatService;
 ////////////////////////////////////////////////////////////////
+import java.util.List;
+////////////////////////////////////////////////////////////////
 @RestController
-@RequestMapping( "api/chat" )
+@RequestMapping( "api/chats" )
 public class ChatController {
 
     private final ChatService chatService;
@@ -22,8 +25,8 @@ public class ChatController {
         this.chatService = chatService;
     }
     @PostMapping( "/{chatname}" )
-    public ResponseEntity <?> create( @PathVariable String chatname ){
-        
+    public ResponseEntity <?> create( @PathVariable
+                                      String chatname ){
         if( chatService.existsByChatname( chatname )){
             
             return ResponseEntity
@@ -35,6 +38,11 @@ public class ChatController {
         return ResponseEntity
             .status( HttpStatus.CREATED )
             .body( chat );
+    }
+    @GetMapping( "/{username}" )
+    public List <String> getChatsByUsername( @PathVariable
+                                             String username ){
+        return chatService.findChatsByUsername( username );
     }
 }
 ////////////////////////////////////////////////////////////////
@@ -87,6 +95,20 @@ public class ChatController {
 // ## F₀ = μm₁g(1 + m₂/(m₂ + 2m₁)) = 2μm₁g(m₁ + m₂)/(m₂ + 2m₁),
 // ## so for F ≤ F₀ a = w = μm₁g/(m₂ + 2m₁) = F/2(m₁ + m₂)     «
 // #############################################################
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+// Exercise 1.3.7. Prove that if a is a n upper bound for A, and
+// if a is also an element of A, then i t must be that a = sup A.
+//
+// T   h   i   s s h o u l d f  o  l  l  o  w f r o m this lemma:
+//
+// Lemma 1.3.8. Assume s ∈ R is an upper bound f o r a set A ⊆ R.
+// T h e n, s = sup A if and only if, for every choice o f ε > 0,
+// t h e r e exists a n e l e m e n t a ∈ A satisfying s − ε < a.
+//
+// b  e c  o  z a - ε < a f  o  r e  v  e  r  y choice o f ε > 0
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////

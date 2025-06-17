@@ -70,3 +70,17 @@ public class UserRestController {
 // γ = 4.1029 10⁻⁴ kg/ms, so both forces will be compatible when
 // rv = γ/Aρ₀ = 3.2 10⁻⁴ m²/s                                  «
 ////////////////////////////////////////////////////////////////
+// 17. Suppose (a,b) = 1. If a|c and b|c prove that ab|c
+// #############################################################
+// From a|c, c = as, s o b|as and (a,b) = 1, f r o m Theorem 1.4
+// b|s, s o s = bt and c = abt. There is also another prove that
+// d o e s n ' t use the Theorem 1.4; From (a,b) = 1 w e h a v e:
+// au + bv = 1, for some integers u a n d v and from a|c and b|c
+// w e have c = as, c = bt. L e t ' s multiply au + bv = 1 by st:
+// astu + bstv = st = ctu + csv = c( tu + sv ), c² = asbt = abst,
+// so st = c²/ab = c(tu + sv), so c = ab(tu + sv)              «
+// #############################################################
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////

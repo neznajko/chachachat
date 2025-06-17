@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, initial-scale=1">
   <title>Bootstrap</title>
-  <link rel="stylesheet" href="css/main.css"> <!-- Compiled CSS -->
+  <link rel="stylesheet" href="css/main.css"> 
 </head>
-<body class="bg-primary">
+<body>
 <!------------------------------------------------------------->
   <!-- Mobile Horizontal Navbar -->
   <nav class="navbar navbar-dark bg-dark d-md-none">
@@ -167,11 +167,45 @@
       </li>
     </ul>
   </div>
-<!------------------------------------------------------------->
+<!--########################################################====
+    7. If a < 0, find (a,0)
+    b|c if c = bd for any integer d, if c = 0, b|0 for any b b e
+    coz 0 = b*0. If a < 0, -a is positive and divides both a and
+    0 and is the gcd;
+    
+#############################################################-->
     <!-- Main Content -->
-    <div class="flex-grow-1 p-4">
+    <div class="flex-grow-1 p-4" data-bs-theme="dark">
       <h1>Content Area</h1>
       <p>This area expands to fill remaining space.</p>
+
+      <div class="form-signin w-100 m-auto">
+        <form>
+          <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+          <div class="form-floating">
+            <input type="email" class="form-control"
+                   id="floatingInput"
+                   placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control"
+                   id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+          <div class="form-check text-start my-3">
+            <input class="form-check-input" type="checkbox"
+                   value="remember-me" id="checkDefault">
+            <label class="form-check-label" for="checkDefault">
+              Remember me
+            </label>
+          </div>
+          <button class="btn btn-primary w-100 py-2"
+                  type="submit">Sign in</button>
+          <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2025</p>
+        </form>
+      </div>
+
     </div>
 
   </main>

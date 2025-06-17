@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.chachachat.repository.ChatRepository;
 import com.chachachat.model.Chat;
 ////////////////////////////////////////////////////////////////////////
+import java.util.List;
+////////////////////////////////////////////////////////////////////////
 @Service
 public class ChatService {
     
@@ -25,6 +27,9 @@ public class ChatService {
     public Chat createChat( String chatname ){
         return chatRepository.save( new Chat( chatname ));
     }
+    public List <String> findChatsByUsername( String username ){
+        return chatRepository.findChatsByUsername( username );
+    }                                     
 }
 ////////////////////////////////////////////////////////////////////////
 //

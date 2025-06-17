@@ -42,11 +42,13 @@ public class ChachachatApplication implements CommandLineRunner {
     @Override
     public void run( String ... args ) throws Exception {
         log.error( "Boom" );
-        Chat chat = chatService.createChat( "java" );
+        Chat java = chatService.createChat( "java" );
+        Chat js = chatService.createChat( "js" );
         User Anton = userService.register( "Anton", "Anton" );
         User Bobi = userService.register( "Bobi", "Bobi" );
-        msgService.save( "Vrooom", chat, Anton );
-        msgService.save( "haHa", chat, Bobi );
+        msgService.save( "Vrooom", java, Anton );
+        msgService.save( "haHa", java, Bobi );
+        msgService.save( "Boom", js, Anton );
     }
 }
 ////////////////////////////////////////////////////////////////

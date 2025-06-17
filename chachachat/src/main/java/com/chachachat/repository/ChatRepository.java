@@ -2,8 +2,11 @@
 package com.chachachat.repository;
 ////////////////////////////////////////////////////////////////
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 ////////////////////////////////////////////////////////////////
 import java.util.Optional;
+import java.util.List;
 ////////////////////////////////////////////////////////////////
 import com.chachachat.model.Chat;
 ////////////////////////////////////////////////////////////////
@@ -12,6 +15,12 @@ public interface ChatRepository
     
     Optional <Chat> findByChatname( String chatname );
     boolean existsByChatname( String chatname );
+    @Query (
+    "SELECT DISTINCT m.chat.chatname " +
+    "FROM Message m " +
+    "WHERE m.user.username = :username" )
+    List <String> findChatsByUsername( @Param( "username" )
+                                       String username );
 }
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
