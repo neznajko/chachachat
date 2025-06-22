@@ -4,10 +4,12 @@ package com.chachachat.service;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.authority
+                                        .SimpleGrantedAuthority;
 ////////////////////////////////////////////////////////////////////////
 import com.chachachat.repository.UserRepository;
 import com.chachachat.model.User;
+import com.chachachat.utils.AuthUtils;
 ////////////////////////////////////////////////////////////////////////
 import java.util.List;
 ////////////////////////////////////////////////////////////////////////
@@ -25,7 +27,7 @@ public class UserService {
     public User findByUsername( String username ){
         return userRepository
             .findByUsername( username )
-            .orElseThrow(() -> new RuntimeException( "User not found" ));
+            .orElseThrow(() -> new RuntimeException("User not found"));
     }
     public User register( String username, String password ){
         password = passwordEncoder.encode( password );
@@ -46,6 +48,27 @@ public class UserService {
     public List <User> findAll() {
         return userRepository.findAll();
     }
+    public User currentUser() {
+        return findByUsername( AuthUtils.getUsername());
+    }
+    public String changePassword( User user,
+                                  String oldPassword,
+                                  String newPassword,
+                                  String retypePassword ){
+        // check old password
+        if( !passwordEncoder.matches( oldPassword, user.getPassword())){
+            return "Old password is incorrect";
+        }
+        // check retyped password
+        if( !newPassword.equals( retypePassword )){
+            return "Retyped password didn't match";
+        }
+        // update db
+        user.setPassword( passwordEncoder.encode( newPassword ));
+        userRepository.save( user );
+
+        return null;        
+    }
 }
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -53,7 +76,7 @@ public class UserService {
 ////////////////////////////////////////////////////////////////////////
 //
 // Exercise 1.3.1. (a) W r i t e a formal definition in the s t y l e of
-// Definition 1.3.2 for the infimum or greatest l o w e r bound of a set.
+// Definition 1.3.2 for the infimum or greatest l o w e r bound of a set
 // (b) Now, state and prove a version o f Lemma 1.3.8 for greatest lower
 // bounds.
 //
