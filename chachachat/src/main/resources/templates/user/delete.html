@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/head::head( 
+      title='chachachat' )}"></head>
+<body>
+  <h2>Are you sure you want to delete your account,
+    <span th:text="${username}"></span>?</h2>
+
+  <form th:action="@{/user/delete}" method="post">
+    <button type="submit"
+            name="confirm"
+            value="yes">Yes, delete</button>
+    <button type="submit"
+            name="confirm"
+            value="no">Cancel</button>
+    </form>
+  <div th:replace="fragments/scripts::scripts"></div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/head::head( 
+      title='chachachat' )}"></head>
+<body>
+  
+  <div id="data"
+       th:attr="data-username=${username},data-chatname=${chatname}">
+  </div>
+
+  <div class="chat-container">
+    <h1 class="display-5" th:text="${chatname}">Chat</h1>
+    <div class="messages">
+      <div th:each="message: ${messages}">
+        <strong th:text="${message.user.username + ':'}">
+          Username
+        </strong>
+        <span th:text="${message.text}">Message text</span>
+      </div>
+    </div>
+    <div class="form-con">
+      <form>
+        <input type="text">
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+  
+  <div th:replace="~{fragments/scripts::scripts}"></div>
+  <script th:src="@{/js/stomp.umd.js}"></script>
+  <script th:src="@{/js/websocket.js}"></script>
+</body>
+</html>
+<!--------------------------------------------------------------
+
+    + display the chat,
+    + the input and the
+    + submit buton
+    + dump input text to console
+    + pass username to the scipt file
+    + dump that name to the console
+    + modify Chat.insert to take two params
+    + prepend instead logging msgs
+    - establish con
+    - dump topic
+    - dest and body
+
+  <div class="con">
+    <div class="select-con center">
+      <div class="select-group">
+        <label for="select-user">User Name</label>
+        <select id="select-user">
+          <option value="">-- Select User --</option>
+          <option value="Anton">Anton</option>
+          <option value="Bobi">Bobi</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-con center">
+      <form>
+        <input type="text">
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <div class="chat-con">
+    </div>
+  </div>
+
+--------------------------------------------------------------->
+
+<!--
+////////////////////////////////////////////////////////////////
+################################################################
+1.2.9. Given a function f: D -> R and a subset B ⊆ R, let f⁻¹(B)
+be the set o f all points from the domain D that get mapped into
+B; that is, f⁻¹(B) = {x ∈ D: f(x) ∈ B}. This s e t is called the
+preimage of B.
+(a) Let f(x) = x². If A is t h e closed interval [0, 4] and B is
+the c l o s e d interval [-1, 1], find f⁻¹(A) a n d f⁻¹(B). Does
+f⁻¹(A ∩ B) = f⁻¹(A) ∩ f⁻¹(B) i n this c a s e? Does f⁻¹(A ∪ B) =
+f⁻¹(A) ∪ f⁻¹(B)?
+(b) The good b e h a v i o r of preimages demonstrated in (a) is
+completely general. Show that for an arbitrary function g: R → R,
+i t is a l w a y s true t h a t g⁻¹(A ∩ B) = g⁻¹(A) ∩ g⁻¹(B) and
+g⁻¹(A ∪ B) = g⁻¹(A) ∪ g⁻¹(B) for all sets A, B ⊆ R.
+----------------------------------------------------------------
+(a) A = [0, 4]; f⁻¹(A) = [-2, 2]
+    B = [-1, 1]; f⁻¹(B) = [-1, 1]
+    A ∩ B = [0, 1]; f⁻¹(A ∩ B) = [-1, 1] = f⁻¹(A) ∩ f⁻¹(B)
+    A ∪ B = [-1, 4]; f⁻¹(A ∪ B) = [-2, 2] = f⁻¹(A) ∪ f⁻¹(B)
+(b) from the definition of preimage i f x ∈ g⁻¹(A), we c a n say
+    g(x) ∈ A, but can we say t h e opposite; if g(x) ∈ A d o e s 
+    x ∈ g⁻¹(A), yea i f x ∈ D, so b a c k to t h e p r o b l e m.
+    I f x ∈ g⁻¹(A ∩ B) ⊆ R, then g(x) ∈ A ∩ B, that i s g(x) ∈ A,
+    g( x ) ∈ B, z o x ∈ g⁻¹( A ) a n d x ∈ g⁻¹( B ), t h a t i s
+    x ∈ g⁻¹(A) ∩ g⁻¹(B).
+    The other way around i s basically the same in the oppposite
+    direction. Let x ∈ g⁻¹(A) ∩ g⁻¹( B) ⊆ R, then x ∈ g⁻¹(A) and
+    x ∈ g⁻¹(B), zo g(x) ∈ A a n d g(x) ∈ B, that is g(x) ∈ A ∩ B,
+    and again x ∈ g⁻¹(A ∩ B), similar for A ∪ B
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+================================================================
+-->

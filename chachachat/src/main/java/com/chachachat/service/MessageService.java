@@ -8,6 +8,8 @@ import com.chachachat.model.User;
 import com.chachachat.model.Chat;
 import com.chachachat.model.Message;
 ////////////////////////////////////////////////////////////////////////
+import java.util.List;
+////////////////////////////////////////////////////////////////////////
 @Service
 public class MessageService {
     
@@ -18,6 +20,9 @@ public class MessageService {
     }
     public Message save( String msg, Chat chat, User user ){
         return messageRepository.save( new Message( msg, chat, user ));
+    }
+    public List <Message> findMessagesByChatname( String chatname ){
+        return messageRepository.findMessagesByChatname( chatname );
     }
 }
 ////////////////////////////////////////////////////////////////////////

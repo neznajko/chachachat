@@ -85,14 +85,34 @@ public class UserController {
     }
     
     @GetMapping( "/user/details" )
-    public String users( Model model ){
+    public String details( Model model ){
         User user = userService.currentUser();
-        String name = user.getUsername();
-        var chats = chatService.findChatsByUsername( name );
+        String username = user.getUsername();
+        var userchats = chatService.findChatsByUsername( username );
+        model.addAttribute( "username", username );
+        model.addAttribute( "userchats", userchats );
         return "user/details";
     }
+
+    @GetMapping( "/user/delete" )
+    public String getDelete( Model model ){
+        User user = userService.currentUser();
+        String username = user.getUsername();
+        model.addAttribute( "username", username );
+        return "user/delete";
+    }
+
+    @PostMapping( "/user/delete" )
+    public String postDelete( @RequestParam String confirm ){
+        User user = userService.currentUser();
+        if( "yes".equals( confirm )){
+            userService.delete( user );
+            return "redirect:/logout";
+        }
+        return "redirect:/user/details";
+    }
 }
-////////////////////////////////////////////////////////[C]R[U]D
+////////////////////////////////////////////////////[C][R][U][D]
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////

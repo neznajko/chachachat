@@ -48,6 +48,7 @@ public class ChachachatApplication implements CommandLineRunner {
         User Bobi = userService.register( "Bobi", "Bobi" );
         msgService.save( "Vrooom", java, Anton );
         msgService.save( "haHa", java, Bobi );
+        msgService.save( "What's up?", java, Bobi );
         msgService.save( "Boom", js, Anton );
     }
 }

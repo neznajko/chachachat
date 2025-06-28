@@ -1,3 +1,10 @@
+:root {
+}
+
+html, body {
+    height: 100%;
+}
+
 .form-signin {
     max-width: 330px;
     padding: 1rem;
@@ -23,7 +30,59 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
-
+/* ##########################################################   
+   ########[ chat-container ]################################
+   ########################################################## */
+.chat-container {
+    background: hsl(10,50%,50%);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* ##########################################################   
+   ########[ messages ]######################################
+   ########################################################## */
+.messages {
+    height: 400px;
+    width: 400px;
+    background: hsl(10,40%,60%);
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column-reverse;
+    padding-left: 1rem;
+}
+/* ##########################################################   
+   ########[ form-con ]######################################
+   ########################################################## */
+.form-con {
+    background: hsl(340,40%,20%);
+    width: 400px;
+}
+.form-con > form {
+    background: red;
+    height: 2.4rem;
+    width: 100%;
+    display: flex;
+}
+.form-con > form > input {
+    height: 100%;
+    width: 80%;
+    background: hsl(15,40%,40%);
+    padding-left: 0.5rem;
+    color: hsl(10,50%,90%);
+    font-size: 1rem;
+}
+.form-con > form > button {
+    cursor: pointer;
+    height: 100%;
+    width: 20%;
+    background: hsl(20,70%,25%);
+    color: hsl(200,20%,70%);
+    font-size: 1rem;
+}
 /* ##########################################################
    Exercise 1.3.6. G  i  v  e  n s e t s A and B, d e f i n e
    A+B = {a+b: a ∈ A and b ∈ B}. Follow these steps t o prove
@@ -62,5 +121,79 @@
        and b ∈ B, be c a u s e s = sup A, a n d s - ε/2 is no
        longer a sup t h a t is there is an a ∈ A: s - ε/2 < a,
        same for B
-
    ########################################################## */
+/* ==========================================================
+   <> 2.1.27*: A person of mass m₁, remaining in place, pulls
+   a load of mass m₂ by a rope. The coefficient of friction
+   on a horizontal plane is μ. At what minimum tension force
+   of the rope will the load move from its place? At what
+   angle to the horizontal plane should the rope be directed?
+   ==========================================================
+   ############################ It's very good that this book
+   ############################ has solutions:) zo basically
+   ##########          0   #### this is like a combination of
+   ##########         //   #### the previous problems; like   
+   ##########        // \  #### what is the angle at which we
+   ##########  __   .` /|  #### pull a box so that the force 
+   ########## |  |.`  / |  #### is minimal, the complication 
+   ########## |  |   /   \ #### comes from the different     
+   ############################ possibilities, like: if the
+   ############################ mass of the box is very large
+   ### then it is possible for the man to start moving while
+   ### the box is still static etc. So let's write the
+   ### equations which are balanced be coz we are looking for 
+   ### minimal force and this implies zero acceleration:
+   ##########################################################
+   ##########################################################
+   ###                       ## (1) Tcosθ = f₁ ≤ μN₁
+   ###             A N₁      ##     N₁ = Tsinθ + m₁g
+   ###             |         ## 
+   ###             |         ## (2) Tcosθ = f₂ ≤ μN₂
+   ###             +---> f₁  ##     N₂ + Tsinθ = m₂g
+   ###    N₂      /|         ################################
+   ###      A    T |         ## Let -/+ means f is less then
+   ###      |   /  |         ## or greater its critical value
+   ###      |  /   V m₁g     ## μN, so we have four scenarios
+   ###      | T              ################################
+   ###   f₂ |/ θ             ##     ¦  1  ¦  2  #############
+   ###  <---+ . . . . . .    ################################
+   ###      |                ## (a) ¦  -  ¦  -  #############
+   ###      |                ################################
+   ###      |                ## (b) ¦  -  ¦  +  #############
+   ###      V m₂g            ################################
+   ###                       ## (c) ¦  +  ¦  -  #############
+   ##########################################################
+   ############################ (d) ¦  +  ¦  +  #############
+   ##########################################################
+   ### In case (a) both wont moo, in (b) the person will stay
+   ### still and the box will start moving with constant 
+   ### velocity, in (c) the box will be still and the person 
+   ### will start moving, in (d) both will move with constant
+   ### velocities. So we are interested in cases (b) and (d)
+   ##########################################################
+   ### (b) Tcosθ = μN₂      ; Tcosθ ≤ μN₁
+   ###     N₂ + Tsinθ = m₂g ; N₁ = Tsinθ + m₁g
+   ##########################################################
+   ### Tcosθ = μ(m₂g - Tsinθ), T(cosθ + μsinθ) = μm₂g
+   ### T = μm₂g/(cosθ + μsinθ), T is minimum at tgθ = μ
+   ### if we put T into the equation for 1 we'll get:
+   ### Tcosθ ≤ μ(Tsinθ + m₁g), T(cosθ - μsinθ) ≤ μm₁g
+   ### μm₂g(cosθ - μsinθ)/(cosθ + μsinθ) ≤ μm₁g
+   ### m₂(1 - μtgθ)/(1 + μtgθ) ≤ m₁,
+   ### m₂(1 - μ²)/(1 + μ²) ≤ m₁, that is the condition for
+   ### m₁ being static is m₂ ≤ m₁(1 + μ²)/(1 - μ²) if this
+   ### is not fulfilled f₁ will reach its critical value and
+   ### the person will start rolling as well
+   ### (d) Tcosθ = μN₂      ; Tcosθ = μN₁
+   ###     N₂ + Tsinθ = m₂g ; N₁ = Tsinθ + m₁g
+   ### T = μm₂g/(cosθ + μsinθ) = μm₁g/(cosθ - μsinθ),
+   ### m₂/m₁ = (1 + μtgθ)/(1 - μtgθ),
+   ### (m₂/m₁)(1 - μtgθ) = 1 + μtgθ = m₂/m₁ - μ(m₂/m₁)tgθ
+   ### μtgθ(1 + m₂/m₁) = m₂/m₁ - 1;
+   ### tgθ = (m₂ - m₁)/μ(m₂ + m₁), m₂ > m₁(1 + μ²)/(1 - μ²)
+   ##########################################################
+   ##########################################################
+   ##########################################################
+   ##########################################################
+   ##########################################################
+   ========================================================== */

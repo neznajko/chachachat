@@ -1,51 +1,48 @@
 ////////////////////////////////////////////////////////////////
 package com.chachachat.controller;
 ////////////////////////////////////////////////////////////////
-import org.springframework.stereotype.Controller; 
-////////////////////////////////////////////////////////////////
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 ////////////////////////////////////////////////////////////////
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 ////////////////////////////////////////////////////////////////
-import com.chachachat.model.User;
 import com.chachachat.model.Chat;
-import com.chachachat.model.Message;
-import com.chachachat.service.UserService;
 import com.chachachat.service.ChatService;
-import com.chachachat.service.MessageService;
-////////////////////////////////////////////////////////////////
-import org.springframework.ui.Model;
 ////////////////////////////////////////////////////////////////
 import java.util.List;
-import java.util.Collections;
 ////////////////////////////////////////////////////////////////
-@Controller
-@RequestMapping( "/chat" )
-public class ChatController {
+@RestController
+@RequestMapping( "api/chats" )
+public class ChatRestController {
 
-    private final UserService userService;
     private final ChatService chatService;
-    private final MessageService messageService;
 
-    public ChatController( UserService userService,
-                           ChatService chatService,
-                           MessageService messageService ){
-        this.userService = userService;
+    public ChatRestController( ChatService chatService ){
         this.chatService = chatService;
-        this.messageService = messageService;
     }
-    @GetMapping( "/{chatname}" )
-    public String getChat( @PathVariable String chatname,
-                           Model model ){
-        User user = userService.currentUser();
-        model.addAttribute( "username", user.getUsername());
-        model.addAttribute( "chatname", chatname );
-        List <Message> messages = messageService
-            .findMessagesByChatname( chatname );
-        Collections.reverse( messages );
-        model.addAttribute( "messages", messages );
-        return "chat/chat";
+    @PostMapping( "/{chatname}" )
+    public ResponseEntity <?> create( @PathVariable
+                                      String chatname ){
+        if( chatService.existsByChatname( chatname )){
+            
+            return ResponseEntity
+                .status( HttpStatus.CONFLICT )
+                .body( "That chat already exists" );
+        }
+        Chat chat = chatService.createChat( chatname );
+        
+        return ResponseEntity
+            .status( HttpStatus.CREATED )
+            .body( chat );
+    }
+    @GetMapping( "/{username}" )
+    public List <String> getChatsByUsername( @PathVariable
+                                             String username ){
+        return chatService.findChatsByUsername( username );
     }
 }
 ////////////////////////////////////////////////////////////////

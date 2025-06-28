@@ -2,11 +2,21 @@
 package com.chachachat.repository;
 ////////////////////////////////////////////////////////////////
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 ////////////////////////////////////////////////////////////////
 import com.chachachat.model.Message;
 ////////////////////////////////////////////////////////////////
+import java.util.List;
+////////////////////////////////////////////////////////////////
 public interface MessageRepository
     extends CrudRepository <Message,Long> {
+    // Find all messages that belongs to a given chat
+    @Query( "SELECT m FROM Message m " +
+            "JOIN FETCH m.user " +
+            "WHERE m.chat.chatname = :chatname")
+    List <Message> findMessagesByChatname( @Param( "chatname" )
+                                           String chatname );
 }
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
