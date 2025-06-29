@@ -5,6 +5,35 @@ html, body {
     height: 100%;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    width: 200px;
+    background: #f1f1f1;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* ##########################################################
+   ##########################################################
+   ########################################################## */
+
 .form-signin {
     max-width: 330px;
     padding: 1rem;

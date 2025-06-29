@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:fragment="layout(content,title)">
+<head th:replace="~{fragments/head::head(title=${title})}"></head>
+<body>
+
+  <main>
+    <div class="sidebar">
+      <div th:if="${isAuth}">
+        <a href="/logout">Logout</a>
+      </div>
+      <div th:unless="${isAuth}">
+        <a href="/login">Login</a> | <a href="/register">Register</a>
+      </div>    
+    </div>
+    <div class="content">
+      <div th:replace="${content}"></div>
+    </div>
+  </main>
+
+  <div th:replace="fragments/scripts::scripts"></div>
+</body>
+</html>
+<!--------------------------------------------------------------
+    45. Let A and B be events. The symmetric difference A △ B is
+    defined to be the set of all elements that are in A or B but
+    not both. In logic and engineering, this event is also
+    called the XOR (exclusive or ) of A and B. Show that P (A△B)
+    = P (A) + P (B) − 2P (A ∩ B), directly using the axioms of
+    probability.
+--------------------------------------------------------------->

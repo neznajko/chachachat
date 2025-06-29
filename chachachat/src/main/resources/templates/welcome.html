@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head th:replace="~{fragments/head::head( 
-      title='chachachat' )}"></head>
-<body>
-  <h1 class="display-4">Welcome!</h1>
-  <div th:replace="fragments/scripts::scripts"></div>
-</body>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout::layout(
+                  ~{::content},'Welcome')}">
+
+  <div th:fragment="content">
+    <h1>
+      Welcome <span th:text="${username}"></span>!
+    </h1>
+  </div>
+
 </html>

@@ -31,14 +31,13 @@ public class UserController {
     }
 
     @GetMapping({ "/", "/home" })
-    public String home( Model model ){
-        model.addAttribute( "isAnonymous",
-                            AuthUtils.isAnonymous());
+    public String home(){
         return "home";
     }
 
     @GetMapping( "/welcome" )
-    public String welcome(){
+    public String welcome( Model model ){
+        model.addAttribute( "username", AuthUtils.getUsername());
         return "welcome";
     }
 

@@ -1,21 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head th:replace="~{fragments/head::head( 
-      title='chachachat' )}"></head>
-<body>
-  <h1 class="display-2">Welcome!</h1>
-  <div th:if="${isAnonymous}">
-    <a href="/register">R eg i s t e r</a>
-    <a href="/login">Login</a>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout::layout(
+                  ~{::content},'Chachachat')}">
+
+  <div th:fragment="content">
+    <h1>c ha cha chat</h1>
   </div>
-  <div th:unless="${isAnonymous}">
-    <a href="/welcome">Go to Welcome Page</a>
-    <form th:action="@{/logout}" method="post">
-      <button type="submit">Logout</button>
-    </form>
-  </div>
-  <div th:replace="fragments/scripts::scripts"></div>
-</body>
+
 </html>
 <!------------------------------------------------------------->
 <!-- ###########################################################
