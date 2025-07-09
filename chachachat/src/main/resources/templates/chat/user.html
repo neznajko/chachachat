@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout::layout(
+                  ~{::content},'UserChats',~{::scripts})}">
+
+  <div th:fragment="content">
+    <!---->
+    <h1 class="display-4"
+        th:text="${name + ' chats:'}"></h1>
+    <ul>
+      <li th:each="chat:${chats}"
+          th:text="${chat}">
+      </li>
+    </ul>
+    <a href="/chat/all" class="btn btn-secondary">Back</a>
+    <!---->
+  </div>
+
+  <div th:fragment="scripts"></div>
+
+</html>
+<!--------------------------------------------------------------
+--------------------------------------------------------------->

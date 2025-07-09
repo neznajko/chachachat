@@ -1,69 +1,72 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head th:replace="~{fragments/head::head( 
-      title='chachachat' )}"></head>
-<body>
-  <div class="form-signin w-100 m-auto">
-    <!-- .. -->
-    <div th:if="${error}">
-      <p th:text="${error}"></p>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout::layout(
+                  ~{::content},'Change Pass',~{::scripts})}">
+
+  <div th:fragment="content">
+    <div class="form-signin w-100 m-auto">
+      <!-- .. -->
+      <div th:if="${error}">
+        <p th:text="${error}"></p>
+      </div>
+      <form th:action="@{/user/edit}"
+            method="post">
+
+        <h1 class="display-5"
+            th:text="${username}">Change Password</h1>
+        
+        <!-- Username -->
+        <div class="form-floating">
+          <input type="text"
+                 class="form-control top-input"
+                 id="username"
+                 th:value="${username}"
+                 name="username" readonly />
+          <label for="username">Username</label>
+        </div>
+        
+        <!-- Old Password -->
+        <div class="form-floating">
+          <input type="password"
+                 class="form-control mid-input"
+                 id="oldPassword"
+                 placeholder="Old Password"
+                 name="oldPassword" required />
+          <label for="oldPassword">Old Password</label>
+        </div>
+
+        <!-- New Password -->
+        <div class="form-floating">
+          <input type="password"
+                 class="form-control mid-input"
+                 id="newPassword"
+                 placeholder="New Password"
+                 name="newPassword" required />
+          <label for="newPassword">New Password</label>
+        </div>
+        
+        <!-- Retype Password -->
+        <div class="form-floating">
+          <input type="password"
+                 class="form-control bot-input"
+                 id="retypePassword"
+                 placeholder="Retype Password"
+                 name="retypePassword" required />
+          <label for="retypePassword">Retype Password</label>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit"
+                class="btn btn-primary w-100 py-2">Submit</button>
+        
+      </form>
     </div>
-    <div th:if="${success}">
-      <p th:text="${success}"></p>
-    </div>
-    <form th:action="@{/user/edit}"
-          th:object="${user}" 
-          method="post">
 
-      <h1 class="display-5" th:text="*{username}">Change Password</h1>
-    
-      <!-- Username -->
-      <div class="form-floating">
-        <input type="text"
-               class="form-control top-input"
-               id="username"
-               placeholder="Username"
-               th:field="*{username}" readonly />
-        <label for="username">Username</label>
-      </div>
-    
-      <!-- Old Password -->
-      <div class="form-floating">
-        <input type="password"
-               class="form-control mid-input"
-               id="oldPassword"
-               placeholder="Old Password"
-               name="oldPassword" required />
-        <label for="oldPassword">Old Password</label>
-      </div>
-
-      <!-- New Password -->
-      <div class="form-floating">
-        <input type="password"
-               class="form-control mid-input"
-               id="newPassword"
-               placeholder="New Password"
-               name="newPassword" required />
-        <label for="newPassword">New Password</label>
-      </div>
-    
-      <!-- Retype Password -->
-      <div class="form-floating">
-        <input type="password"
-               class="form-control bot-input"
-               id="retypePassword"
-               placeholder="Retype Password"
-               name="retypePassword" required />
-        <label for="retypePassword">Retype Password</label>
-      </div>
-
-      <!-- Submit -->
-      <button type="submit"
-              class="btn btn-primary w-100 py-2">Submit</button>
-  
-    </form>
   </div>
-  
-  <div th:replace="fragments/scripts::scripts"></div>
-</body>
+
+  <div th:fragment="scripts"></div>
+
 </html>
+<!--------------------------------------------------------------
+--------------------------------------------------------------->

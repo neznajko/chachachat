@@ -2,6 +2,8 @@
 package com.chachachat.repository;
 ////////////////////////////////////////////////////////////////
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 ////////////////////////////////////////////////////////////////
 import java.util.Optional;
 import java.util.List;
@@ -14,6 +16,14 @@ public interface UserRepository
     Optional <User> findByUsername( String username );
     boolean existsByUsername( String username );
     List <User> findAll();
+
+    @Query (
+    "SELECT DISTINCT m.user.username " +
+    "FROM Message m " +
+    "WHERE m.chat.chatname = :chatname" )
+    
+    List <String> findUsersByChatname( @Param( "chatname" )
+                                       String chatname );
 }
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////

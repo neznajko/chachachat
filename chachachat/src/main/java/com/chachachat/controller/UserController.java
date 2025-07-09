@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;    
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support
+                                          .RedirectAttributes;
 ////////////////////////////////////////////////////////////////
 import com.chachachat.utils.AuthUtils;
 import com.chachachat.service.UserService;
@@ -36,8 +38,7 @@ public class UserController {
     }
 
     @GetMapping( "/welcome" )
-    public String welcome( Model model ){
-        model.addAttribute( "username", AuthUtils.getUsername());
+    public String welcome(){
         return "welcome";
     }
 
@@ -57,8 +58,6 @@ public class UserController {
 
     @GetMapping( "/user/edit" )
     public String getEdit( Model model ){
-        User user = userService.currentUser();
-        model.addAttribute( "user", user );
         return "user/edit";
     }
 
@@ -66,38 +65,33 @@ public class UserController {
     public String postEdit( @RequestParam String oldPassword,
                             @RequestParam String newPassword,
                             @RequestParam String retypePassword,
-                            Model model ){
+                            Model model,
+                            RedirectAttributes redirect ){
         User user = userService.currentUser();
         String result = userService
             .changePassword( user,
                              oldPassword,
                              newPassword,
                              retypePassword );
-        model.addAttribute( "user", user );
         if( result == null ){
-            model.addAttribute( "success",
-                                "Password updated successfully" );
-        } else {
-            model.addAttribute( "error", result );
-        }
-        return "user/edit";
+            redirect.addFlashAttribute
+                ( "success",
+                  "Password updated successfully" );
+            return "redirect:/user/settings";
+        } 
+        model.addAttribute( "error", result );
+        return "/user/edit";
     }
-    
-    @GetMapping( "/user/details" )
-    public String details( Model model ){
-        User user = userService.currentUser();
-        String username = user.getUsername();
+    @GetMapping( "/user/settings" )
+    public String settings( Model model ){
+        String username = AuthUtils.getUsername();
         var userchats = chatService.findChatsByUsername( username );
-        model.addAttribute( "username", username );
         model.addAttribute( "userchats", userchats );
-        return "user/details";
+        return "user/settings";
     }
 
     @GetMapping( "/user/delete" )
     public String getDelete( Model model ){
-        User user = userService.currentUser();
-        String username = user.getUsername();
-        model.addAttribute( "username", username );
         return "user/delete";
     }
 
@@ -108,7 +102,7 @@ public class UserController {
             userService.delete( user );
             return "redirect:/logout";
         }
-        return "redirect:/user/details";
+        return "redirect:/user/settings";
     }
 }
 ////////////////////////////////////////////////////[C][R][U][D]

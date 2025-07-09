@@ -13,6 +13,10 @@ public class GlobalControllerAdvice
     public boolean isAuthenticated() {
         return !AuthUtils.isAnonymous();
     }
+    @ModelAttribute( "username" )
+    public String getUsername() {
+        return AuthUtils.getUsername();
+    }
 }
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////

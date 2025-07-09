@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-  <head th:replace="~{fragments/head::head(
-        title='Register')}">
-  </head>
-<body>
-  <div th:replace="~{fragments/auth::auth(
-       title='Register',
-       action='/register',
-       retype=true)}">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout::layout(
+                  ~{::content},'Register Page',~{::scripts})}">
+
+  <div th:fragment="content">
+    <!---->
+    <div th:replace="~{fragments/auth::auth(
+         title='Register',
+         action='/register',
+         retype=true)}">
+    </div>
+    <!---->
   </div>
-  <div th:replace="fragments/scripts::scripts"></div>
-</body>
+
+  <div th:fragment="scripts"></div>
+
 </html>
-<!------------------------------------------------------------->
+<!--------------------------------------------------------------
 <!-- #######################################################
      #######################################################
      1. F i n d the greatest common divisors. You should b e

@@ -30,6 +30,9 @@ public class ChatService {
     public List <String> findChatsByUsername( String username ){
         return chatRepository.findChatsByUsername( username );
     }                                     
+    public List <Chat> findAll() {
+        return chatRepository.findAll();
+    }
 }
 ////////////////////////////////////////////////////////////////////////
 //

@@ -15,6 +15,7 @@ public interface ChatRepository
     
     Optional <Chat> findByChatname( String chatname );
     boolean existsByChatname( String chatname );
+    List <Chat> findAll();
     @Query (
     "SELECT DISTINCT m.chat.chatname " +
     "FROM Message m " +

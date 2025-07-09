@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head th:replace="~{fragments/head::head( 
-      title='chachachat' )}"></head>
-<body>
-  <h1 class="display-4">Users</h1>
-  <ul>
-    <th:block th:each="user, iterStat: ${users}">
-      <li>
-        <strong th:text="${user.username}">User Name</strong>:
-        <ul>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout::layout(
+                  ~{::content},'All Users',~{::scripts})}">
 
-          <th:block th:each="chat: ${userchats[iterStat.index]}">
-            <li th:text="${chat}">Chat Title</li>
-          </th:block>
+  <div th:fragment="content">
+    <h1 class="display-4">Users</h1>
+    <ul>
+      <th:block th:each="user, iterStat: ${users}">
+        <li>
+          <strong th:text="${user.username}">User Name</strong>:
+          <ul>
 
-        </ul>
-      </li>
-    </th:block>
-  </ul>
-  <div th:replace="fragments/scripts::scripts"></div>
-</body>
+            <th:block th:each="chat: ${userchats[iterStat.index]}">
+              <li th:text="${chat}">Chat Title</li>
+            </th:block>
+
+          </ul>
+        </li>
+      </th:block>
+    </ul>
+  </div>
+
+  <div th:fragment="scripts"></div>
 </html>
 <!--------------------------------------------------------------
 Exercise 1.3.9. (a) If sup A < sup B, show that there exists an 

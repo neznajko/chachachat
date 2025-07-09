@@ -73,6 +73,10 @@ public class UserService {
     public void delete( User user ){
         userRepository.delete( user );
     }
+
+    public List <String> findUsersByChatname( String chatname ){
+        return userRepository.findUsersByChatname( chatname );
+    }
 }
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

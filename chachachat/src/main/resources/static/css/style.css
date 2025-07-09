@@ -1,10 +1,14 @@
 :root {
+    --bg-body: hsl(10,5%,40%);
 }
 
 html, body {
     height: 100%;
 }
 
+body {
+    background: var( --bg-body );
+}
 ul {
     list-style-type: none;
     margin: 0;
@@ -20,9 +24,21 @@ main {
     height: 100%;
 }
 
+/* ##########################################################
+   ##########################################################
+   ########################################################## */
+
+.disabled {
+    color: hsl(5,5%,60%);
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+}
+
 .sidebar {
+    padding: 1rem;
     width: 200px;
-    background: #f1f1f1;
+    background: hsl(10,5%,45%);
 }
 
 .content {

@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 ////////////////////////////////////////////////////////////////
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 import com.chachachat.model.User;
@@ -18,6 +20,7 @@ import com.chachachat.service.MessageService;
 import org.springframework.ui.Model;
 ////////////////////////////////////////////////////////////////
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Collections;
 ////////////////////////////////////////////////////////////////
 @Controller
@@ -38,14 +41,48 @@ public class ChatController {
     @GetMapping( "/{chatname}" )
     public String getChat( @PathVariable String chatname,
                            Model model ){
-        User user = userService.currentUser();
-        model.addAttribute( "username", user.getUsername());
         model.addAttribute( "chatname", chatname );
         List <Message> messages = messageService
             .findMessagesByChatname( chatname );
         Collections.reverse( messages );
         model.addAttribute( "messages", messages );
         return "chat/chat";
+    }
+    @GetMapping( "/user/{name}" )
+    public String userChats( @PathVariable String name,
+                             Model model ){
+        var chats = chatService.findChatsByUsername( name );
+        model.addAttribute( "name", name );
+        model.addAttribute( "chats", chats );
+        return "chat/user";
+    }
+    @GetMapping( "" )
+    public String getNewChat() {
+        return "chat/new";
+    }
+    @PostMapping( "" )
+    public String postNewChat( @RequestParam String chatname,
+                               Model model ){
+        if( chatService.existsByChatname( chatname )){
+            model.addAttribute( "error",
+                                chatname + " already exists" );
+            return "chat/new";
+        }
+        chatService.createChat( chatname );
+        return "redirect:/chat/" + chatname;
+    }
+    @GetMapping( "/all" )
+    public String allChats( Model model ){
+        List <Chat> chats = chatService.findAll();
+        List <List <String>> chatusers = new ArrayList <> ();
+        for( var chat: chats ){
+            String chatname = chat.getChatname();
+            var users = userService.findUsersByChatname( chatname );
+            chatusers.add( users );
+        }
+        model.addAttribute( "chats", chats );
+        model.addAttribute( "chatusers", chatusers );
+        return "chat/all";
     }
 }
 ////////////////////////////////////////////////////////////////
@@ -112,6 +149,20 @@ public class ChatController {
 // t h e r e exists a n e l e m e n t a ∈ A satisfying s − ε < a.
 //
 // b  e c  o  z a - ε < a f  o  r e  v  e  r  y choice o f ε > 0
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+// Exercise 1.4.1. Recall that I stands for the set of
+// irrational numbers.
+// (a) Show that if a, b ∈ Q, then ab and a + b are elements of
+//     Q as well.
+// (b) Show that if a ∈ Q and t ∈ I, then a + t ∈ I and at ∈ I
+//     as long as a ≠ 0.
+// (c) Part (a) can be summarized by saying that Q is closed
+//     under addition and multiplication. Is I closed under
+//     addition and multiplication? Given two irrational numbers
+//     s and t, what can we say about s + t and st?
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////

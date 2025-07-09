@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout::layout(
+                  ~{::content},'Chats',~{::scripts})}">
+
+  <div th:fragment="content">
+
+    <h2 class="display-4">Chats</h2>
+    <div>
+      <th:block th:each="chat,iStat:${chats}">
+        <div>
+          <strong>
+            <a th:href="@{'/chat/' + ${chat.chatname}}"
+               th:text="${chat.chatname}"
+               th:classappend="${isAuth}?'':'disabled'">
+            </a>
+          </strong>
+        </div>
+        <div>
+
+          <th:block th:each="user:${chatusers[iStat.index]}">
+            <a th:href="@{'/chat/user/' + ${user}}" 
+               th:text="${user}"></a>
+          </th:block>
+          
+        </div>
+      </th:block>
+    </div>
+  </div>
+
+  <div th:fragment="scripts"></div>
+
+</html>
+<!--------------------------------------------------------------
+--------------------------------------------------------------->

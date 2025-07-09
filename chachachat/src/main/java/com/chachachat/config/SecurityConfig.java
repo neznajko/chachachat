@@ -39,7 +39,9 @@ public class SecurityConfig {
                         "/",
                         "/home",
                         "/register",
-                        "/login"
+                        "/login",
+                        "/chat/all",
+                        "/chat/user/*"
                 ).permitAll()
                 .anyRequest().authenticated()
         ).formLogin( form -> form

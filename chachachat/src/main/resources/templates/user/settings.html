@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout::layout(
+                  ~{::content},'Settings',~{::scripts})}">
+
+  <div th:fragment="content">
+    <div th:if="${success}">
+      <strong th:text="${success}"></strong>
+    </div>
+    <h1 class="display-4" th:text="${username}">User Details</h1>
+    <ul>
+      <th:block th:each="chat:${userchats}">
+        <li th:text="${chat}">Chat Title</li>
+      </th:block>
+    </ul>
+    <div>
+      <a href="/user/edit"> Edit </a>
+    </div>
+    <div>
+      <a href="/user/delete"> Delete </a>
+    </div>
+  </div>
+
+  <div th:fragment="scripts"></div>
+
+</html>
+<!--------------------------------------------------------------
+--------------------------------------------------------------->
