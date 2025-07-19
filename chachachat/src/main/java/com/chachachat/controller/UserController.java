@@ -42,20 +42,6 @@ public class UserController {
         return "welcome";
     }
 
-    @GetMapping( "/user/all" )
-    public String users( Model model ){
-        List <User> users = userService.findAll();
-        List <List <String>> userchats = new ArrayList <> ();
-        for( User user: users ){
-            String name = user.getUsername();
-            var chats = chatService.findChatsByUsername( name );
-            userchats.add( chats );
-        }
-        model.addAttribute( "users", users );
-        model.addAttribute( "userchats", userchats );
-        return "user/all";
-    }
-
     @GetMapping( "/user/edit" )
     public String getEdit( Model model ){
         return "user/edit";

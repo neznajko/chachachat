@@ -157,12 +157,24 @@ public class ChatController {
 // irrational numbers.
 // (a) Show that if a, b ∈ Q, then ab and a + b are elements of
 //     Q as well.
+//
+//     This is kind of obvious if we set:
+//     a = p/q, b = s/t for p,s ∈ Z and q,t ∈ N, then
+//     ab = ps/qt and a + b = (pt + sq)/qt
+//
 // (b) Show that if a ∈ Q and t ∈ I, then a + t ∈ I and at ∈ I
 //     as long as a ≠ 0.
+//
+//     if b = a + t ∈ Q, then t = b - a ∈ Q, same for at
+//
 // (c) Part (a) can be summarized by saying that Q is closed
 //     under addition and multiplication. Is I closed under
 //     addition and multiplication? Given two irrational numbers
 //     s and t, what can we say about s + t and st?
+//
+//     if we take t = 2 - s, then t + s = 2 ∈ N, same if we pick
+//     t = 2/s, then ts = 2 ∈ N, zo I is not closed under
+//     addition and multiplication
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////

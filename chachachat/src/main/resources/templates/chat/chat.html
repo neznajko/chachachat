@@ -7,7 +7,8 @@
   <div th:fragment="content">
 
     <div id="data"
-         th:attr="data-username=${username},data-chatname=${chatname}">
+         th:attr="data-username=${username},
+                  data-chatname=${chatname}">
     </div>
 
     <div class="chat-container">
@@ -28,6 +29,7 @@
       </div>
     </div>
 
+    <a href="/chat/all" class="btn btn-secondary">Back</a>
   </div>
 
   <div th:fragment="scripts">
