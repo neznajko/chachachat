@@ -5,9 +5,8 @@
                   ~{::content},'Welcome',~{::scripts})}">
 
   <div th:fragment="content">
-    <h1>
-      Welcome <span th:text="${username}"></span>!
-    </h1>
+    <div class="welcome" th:text="${'Welcome aboard ' + username}">
+    </div>
   </div>
 
   <div th:fragment="scripts"></div>

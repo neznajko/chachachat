@@ -2,14 +2,14 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       th:replace="~{fragments/layout::layout(
-                  ~{::content},'Welcome',~{::scripts})}">
+                  ~{::content},'New Chat',~{::scripts})}">
 
   <div th:fragment="content">
 
-    <div class="form-signin w-100 m-auto">
+    <div class="auth m-auto">
       
       <form th:action="@{/chat}" method="post">
-        <h2>Create New Chat</h2>
+        <div class="display-5 mb-2">Create New Chat</div>
 
         <div th:if="${error}">
           <p th:text="${error}"></p>
@@ -25,7 +25,7 @@
         </div>
         
         <button type="submit"
-                class="btn btn-primary w-100 py-2">Submit</button>
+                class="btn btn-primary w-100 mt-3">Create</button>
       </form>
     </div>
   </div>

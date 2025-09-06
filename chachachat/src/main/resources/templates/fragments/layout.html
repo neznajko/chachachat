@@ -22,115 +22,204 @@
       </button>
       <!-- menu links -->
       <div class="collapse navbar-collapse" id="mobileNavbar">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="bi bi-rainbow me-1"></i> Dashboard
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="bi bi-at me-1"></i> Messages
-            </a>
-          </li>
-        </ul>
+        
+        <div class="navbar-nav">
+          <div class="nav-item">
+
+            <button class="nav-link"
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#mobile-chat-collapse"
+                    aria-expanded="false">
+              <i class="bi bi-app me-1"></i> Chat
+            </button>
+
+            <div class="navbar-nav collapse"
+                 id="mobile-chat-collapse">
+              <div class="nav-item ps-2">
+                <a href="/chat/all" class="nav-link">
+                  <i class="bi bi-arrows-fullscreen me-1"></i>
+                  All Chats
+                </a>
+              </div>            
+              <div class="nav-item ps-2">
+                <a href="/chat"
+                   class="nav-link"
+                   th:classappend="${isAuth}?'':'disabled'">
+                  <i class="bi bi-caret-right-fill me-1"></i> New
+                </a>
+              </div>            
+            </div>
+
+            <button class="nav-link"
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#mobile-user-collapse"
+                    aria-expanded="false">
+              <i class="bi bi-android me-1"></i> User
+            </button>
+
+            <div class="navbar-nav collapse"
+                 id="mobile-user-collapse">
+              <div th:if="${isAuth}"
+                   class="nav-item ps-2">
+                <a href="/logout" class="nav-link">
+                  <i class="bi bi-layers-half me-1"></i> Logout
+                </a>
+              </div>            
+              <div class="nav-item ps-2" th:unless="${isAuth}">
+                <a href="/login" class="nav-link">
+                  <i class="bi bi-layers-fill me-1"></i> Login
+                </a>
+              </div>            
+              <div class="nav-item ps-2" th:unless="${isAuth}">
+                <a href="/register" class="nav-link">
+                  <i class="bi bi-layers me-1"></i> Register
+                </a>
+              </div>            
+              <div class="nav-item ps-2">
+                <a href="/user/settings"
+                   class="nav-link"
+                   th:classappend="${isAuth}?'':'disabled'">
+                  <i class="bi bi-headphones me-1"></i> Settings
+                </a>
+              </div>            
+            </div>
+
+          </div>
+        </div>
+        
       </div>
     </div>
   </nav>
-  <!------------------------------------------------------------->
+  <!--------------------------------------------------------------
+  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  @@ m a i n @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  --------------------------------------------------------------->
   <main class="d-flex">
+    <!------------------------------------------------------------
+    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ s i d e b a r 
+    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    ------------------------------------------------------------->
     <div class="d-none
-                d-md-block
+                d-md-flex
+                flex-column
                 flex-shrink-0
                 p-3
                 sidebar">
-      <!--------------------------------------------------------->
-      <a href="/"
-         class="d-flex
-                align-items-center
-                pb-3
-                mb-3
-                link-dark
-                border-bottom
-                border-dark">
+      <!----------------------------------------------------------
+      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+      @@@@@@@@@@@@ c h a c h a c h a t @@@@@@@@@@@@@@@@@@@@@@@@@@@
+      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+      ----------------------------------------------------------->
+      <a href="/" class="d-flex
+                         align-items-center
+                         pb-3
+                         mb-3
+                         border-bottom
+                         border-2">
         <i class="bi bi-chat me-2"></i>
         <span class="fs-5 fw-semibold">chachachat</span>
       </a>
-      <!--------------------------------------------------------->
-      <ul class="list-unstyled">
-        <li class="mb-1">
+
+      <div class="flex-grow-1">
+        <!--------------------------------------------------------
+        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@ C h a t @@@@@@@@@@@@@@@@@@@@
+        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        --------------------------------------------------------->
+        <div class="mb-1">
           <button class="btn
                          btn-toggle
-                         align-items-center
                          rounded" 
                   data-bs-toggle="collapse" 
                   data-bs-target="#chat-collapse" 
-                  aria-expanded="true">
-            Chat
+                  aria-expanded="false">
+            <i class="bi bi-app me-2"></i> Chat
           </button>
-          <div class="collapse show" id="chat-collapse">
-            <ul class="btn-toggle-nav
-                       list-unstyled
-                       fw-normal
-                       pb-1
-                       small">
-              <li>
+          <div class="collapse" id="chat-collapse">
+            <div class="btn-toggle-nav
+                        list-unstyled
+                        fw-normal
+                        pb-1
+                        small">
+              <div>
+                <a href="/chat/all" class="rounded">
+                  <i class="bi bi-arrows-fullscreen me-2"></i>
+                  All Chats
+                </a>
+              </div>
+              <div>
                 <a href="/chat"
                    class="rounded"
                    th:classappend="${isAuth}?'':'disabled'">
+                  <i class="bi bi-caret-right-fill me-2"></i>
                   New
                 </a>
-              </li>
-              <li>
-                <a href="/chat/all" class="link-dark rounded">
-                  All Chats
-                </a>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
-        </li>
-
-        <li class="mb-1">
+        </div>
+        <!--------------------------------------------------------
+        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@ U s e r @@@@@@@@@@@@@@@@@@@@
+        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        --------------------------------------------------------->
+        <div class="mb-1">
           <button class="btn
                          btn-toggle
-                         align-items-center
-                         rounded
-                         collapsed"
+                         rounded collapsed"
                   data-bs-toggle="collapse"
                   data-bs-target="#user-collapse"
-                  aria-expanded="false">
-            User
+                  aria-expanded="true">
+            <i class="bi bi-android me-2"></i> User
           </button>
-          <div class="collapse" id="user-collapse">
+          <div class="collapse show" id="user-collapse">
             <div class="btn-toggle-nav
                         fw-normal
                         pb-1
                         small">
               <div th:if="${isAuth}">
-                <a href="/logout" class="link-dark rounded">
-                  Logout </a>
+                <a href="/logout" class="rounded">
+                  <i class="bi bi-layers-half me-2"></i> Logout
+                </a>
               </div>
               <div th:unless="${isAuth}">
                 <div>
-                  <a href="/login" class="link-dark rounded">
-                    Login </a>
+                  <a href="/login" class="rounded">
+                    <i class="bi bi-layers-fill me-2"></i> Login
+                  </a>
                 </div>
                 <div>
-                  <a href="/register" class="link-info rounded">
-                    Register </a>
+                  <a href="/register" class="rounded">
+                    <i class="bi bi-layers me-2"></i> Register
+                  </a>
                 </div>
               </div>
               <div>
                 <a href="/user/settings"
                    class="rounded"
                    th:classappend="${isAuth}?'':'disabled'">
-                  Settings </a>
+                  <i class="bi bi-headphones me-2"></i> Settings
+                </a>
               </div>
             </div>
           </div>
-        </li>
-      </ul>
+        </div>
+      </div>
+      <div class="d-flex
+                  aligh-items-center
+                  border-top
+                  border-2
+                  copyryte">
+        @ 2025 Copyright
+      </div>
     </div>
+    <!-----------------------------------------------------------
+    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    @@@@@@@@@@@@@@@@@@@@@@@@ C o n t e n t @@@@@@@@@@@@@@@@@@@@@@
+    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    ------------------------------------------------------------>
     <div class="content">
       <div th:replace="${content}"></div>
     </div>

@@ -5,20 +5,50 @@
                   ~{::content},'Settings',~{::scripts})}">
 
   <div th:fragment="content">
-    <div th:if="${success}">
-      <strong th:text="${success}"></strong>
-    </div>
-    <h1 class="display-4" th:text="${username}">User Details</h1>
-    <ul>
-      <th:block th:each="chat:${userchats}">
-        <li th:text="${chat}">Chat Title</li>
-      </th:block>
-    </ul>
-    <div>
-      <a href="/user/edit"> Edit </a>
-    </div>
-    <div>
-      <a href="/user/delete"> Delete </a>
+    <div class="settings-con">
+      <div th:if="${success}">
+        <strong th:text="${success}"></strong>
+      </div>
+      <div class="settings-grid">
+        <div class="settings-item-1 display-5"
+             th:text="${username}">
+        </div>
+        <div class="settings-item-2">
+          <th:block th:each="chat:${userchats}">
+            <div class="chat-item"
+                 th:text="${chat}"></div>
+          </th:block>
+        </div>
+        <div class="settings-item-3">
+          <a href="/user/edit"
+             class="btn btn-dark">
+            Edit
+          </a>
+        </div>
+        <div class="settings-item-4"></div>
+        <div class="settings-item-5"></div>
+        <div class="settings-item-6"></div>
+        <div class="settings-item-7">
+          <a href="/user/delete"
+             class="btn btn-light">
+            Delete
+          </a>
+        </div>
+        <div class="settings-item-8"></div>
+      </div>      
+      <!--
+      <ul>
+        <th:block th:each="chat:${userchats}">
+          <li th:text="${chat}">Chat Title</li>
+        </th:block>
+      </ul>
+      <div>
+        <a href="/user/edit"> Edit </a>
+      </div>
+      <div>
+        <a href="/user/delete"> Delete </a>
+      </div>
+      -->
     </div>
   </div>
 

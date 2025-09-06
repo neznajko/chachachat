@@ -6,27 +6,39 @@
 
   <div th:fragment="content">
 
-    <h2 class="display-4">Chats</h2>
-    <div>
-      <th:block th:each="chat,iStat:${chats}">
-        <div>
-          <strong>
-            <a th:href="@{'/chat/' + ${chat.chatname}}"
-               th:text="${chat.chatname}"
-               th:classappend="${isAuth}?'':'disabled'">
-            </a>
-          </strong>
+    <div class="all-chats-con">
+      <div class="all-chats-cabinet">
+        <div class="all-chats-cabinet-drawer
+                    all-chats-cabinet-top">
+          All Chats
         </div>
-        <div>
 
-          <th:block th:each="user:${chatusers[iStat.index]}">
-            <a th:href="@{'/chat/user/' + ${user}}" 
-               th:text="${user}"></a>
-          </th:block>
-          
+        <th:block th:each="chat,iStat:${chats}">
+          <div class="all-chats-cabinet-drawer
+                      all-chats-cabinet-mid">
+            <div class="all-chats-chat">
+              <a th:href="@{'/chat/' + ${chat.chatname}}"
+                 th:text="${chat.chatname}"
+                 th:classappend="${isAuth}?'':'disabled'">
+              </a>
+            </div>
+            <div class="all-chats-users">
+              <th:block th:each="user:${chatusers[iStat.index]}">
+                <div class="all-chats-user">
+                  <a th:href="@{'/chat/user/' + ${user}}" 
+                     th:text="${user}"></a>
+                </div>
+              </th:block>
+            </div>
+          </div>
+        </th:block>
+
+        <div class="all-chats-cabinet-drawer
+                    all-chats-cabinet-bot">
         </div>
-      </th:block>
+      </div>
     </div>
+
   </div>
 
   <div th:fragment="scripts"></div>

@@ -9,7 +9,7 @@
      </div>
                                                              -->
 <!------------------------------------------------------------->
-<div class="form-signin w-100 m-auto"
+<div class="auth m-auto"
      th:fragment="auth( title, action, retype )">
   
   <form th:action="@{${action}}"
@@ -73,7 +73,7 @@
 
     <!-- fallback to "Submit" button -->
     <button type="submit"
-            class="btn btn-primary w-100 py-2"
+            class="btn btn-dark w-100 py-2"
             th:text="${title}">Submit</button>
   </form>
 </div>

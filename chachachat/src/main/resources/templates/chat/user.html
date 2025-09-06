@@ -6,14 +6,22 @@
 
   <div th:fragment="content">
     <!---->
-    <h1 class="display-4"
-        th:text="${name + ' chats:'}"></h1>
-    <ul>
-      <li th:each="chat:${chats}"
-          th:text="${chat}">
-      </li>
-    </ul>
-    <a href="/chat/all" class="btn btn-secondary">Back</a>
+    <div class="user-chats-con">
+      <div class="user-chats">
+        <div class="user-chats-top"
+             th:text="${name + ' chats'}">
+        </div>
+        <div class="user-chats-mid"
+             th:each="chat:${chats}"
+             th:text="${chat}">
+        </div>
+        <div class="user-chats-bot">
+          <a href="/chat/all" class="btn btn-dark me-3">
+            Back
+          </a>
+        </div>
+      </div>
+    </div>
     <!---->
   </div>
 
